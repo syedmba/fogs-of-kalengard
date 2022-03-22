@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [
+        ""
+      ],
+      "stopAtEntry": true,
+      "cwd": "/Users/syedmuhammadbinasif/Desktop/Muhammad/University/Year 2/Semester 2/COMP2113/Project",
+      "environment": [],
+      "program": "/Users/syedmuhammadbinasif/Desktop/Muhammad/University/Year 2/Semester 2/COMP2113/Project/build/Debug/outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "externalConsole": false
+    }
+  ]
+}

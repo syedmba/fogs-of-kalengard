@@ -13,6 +13,7 @@ const int mapHeight = 20;
 const int mapLength = 100;
 
 void printTerrain(char terrain[mapHeight][mapLength]){
+
     for (int i = 0; i < mapHeight; i++){
         for (int j=0; j < mapLength; j++){
             if (terrain[i][j] == 'b'){
@@ -27,6 +28,15 @@ void printTerrain(char terrain[mapHeight][mapLength]){
         }
         cout << endl;
     }
+    
+    for (int times = 0; times < 1; times++){
+        for (int i = 0; i < mapLength; i++){
+            cout << "-";
+        }
+        cout << endl;
+    }
+    
+
 }
 
 
@@ -126,13 +136,29 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
     while (steps == 0){
         cout << "Enter the number of steps you want to travel (negative to go back): ";
         cin >> steps;
+        for (int i = 0; i < mapLength; i++){
+            cout << "-";
+        }
+        cout << endl;
         if (steps == 0){
             cout << "When in Kalengard, it's wise to keep moving..." << endl;
         }
     }
 
-    terrain[(mapHeight - 1) - (terrainHeight[steps + currentPlayerCol] + 1)][steps + currentPlayerCol] = 'p';
+    // check to see whether player encounters world border or monster when attempting the input number of steps
+    if (steps + currentPlayerCol >= mapLength){
+        steps = mapLength - currentPlayerCol - 1;
+        cout << "You have reached the right world border at " << steps << " steps and cannot go any further." << endl;
+    }
+    else if (steps + currentPlayerCol < 0){
+        steps = -currentPlayerCol;
+        cout << "You have reached the left world border at " << -steps << " steps and cannot go any further." << endl;
+    }
+
+
+
     terrain[currentPlayerRow][currentPlayerCol] = 's';
+    terrain[(mapHeight - 1) - (terrainHeight[steps + currentPlayerCol] + 1)][steps + currentPlayerCol] = 'p';
 
 }
 
