@@ -45,6 +45,17 @@ void updateArray(){
 }
 
 
+void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
+    // monster classification: literal or ranked?
+    // skeletons, ogres, demons, dark elves, wyverns, goblins, dryad?, dragon!, elemental beings
+
+    // number of monsters = one every 6 steps
+
+    // monster loot/drops may be affected by the type and difficulty of monster
+    
+}
+
+
 void monsterEncounter(){
 
 }
@@ -110,6 +121,8 @@ void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLe
     }
 
     terrain[mapHeight - startHeight - 2][0] = 'p';
+
+
 }
 
 void monsterfight(){
