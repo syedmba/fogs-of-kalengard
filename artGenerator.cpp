@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <cmath>
 #include <stdio.h>
+#include <string>
 
 using namespace std;
 
@@ -9,44 +10,52 @@ const int artHeight = 10;
 const int artWidth = 41;
 
 
-void convertArtToAsciiArray(char data[artHeight][artWidth]){
-    char entry;
+void convertArtToAsciiArray(string data[artHeight], char array[artHeight][artWidth]){
+    string entry;
     for (int i = 0; i < artHeight; i++){
+        getline(cin, entry);
+        data[i] = entry;
         for (int j = 0; j < artWidth; j++){
-            cin >> entry;
-            if (entry){
-                data[i][j] = entry;
-            }
+            array[i][j] = entry[j];
         }
     }
 }
 
 
-void printArray(char data[artHeight][artWidth]){
+void print1DArray(string data[artHeight]){
+    for (int i = 0; i < artHeight; i++){
+        cout << data[i] << endl;
+    }
+}
+
+void print2DArray(char array[artHeight][artWidth]){
     for (int i = 0; i < artHeight; i++){
         for (int j = 0; j < artWidth; j++){
-            cout << data[i][j];
+            cout << array[i][j];
         }
+        cout << endl;
     }
 }
 
 
-void initializeArray(char data[artHeight][artWidth]){
+void initializeArray(string data[artHeight]){
     for (int i = 0; i < artHeight; i++){
-        for (int j = 0; j < artWidth; j++){
-            data[i][j] = ' ';
-        }
+        data[i] = "";
     }
 }
 
 
 int main(){
     
-    char planetAndStars[artHeight][artWidth] = {};
+    string planetAndStars[artHeight] = {};
+    char dataArray[artHeight][artWidth] = {};
 
-    convertArtToAsciiArray(planetAndStars);
+    convertArtToAsciiArray(planetAndStars, dataArray);
 
-    printArray(planetAndStars);
+    // print1DArray(planetAndStars);
+
+    print2DArray(dataArray);
+
 
     return 0;
 }
