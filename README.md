@@ -1,10 +1,18 @@
-# Kalengrad: A Text-Based Adventure Game
+# Fogs of Kalengard: Miasma of the Demon King 
+# A Text-Based Adventure Game
 Project for COMP2113/ENGG1340
 
 ## Team Members:
 
-Fahim Hossain
+BIN ASIF Syed Muhammad
 
-Syed Muhammad BIN ASIF
+HOSSAIN Fahim
 
 ## Game Description
+
+monster encounters
+traps?
+lava/water?
+collectibles
+
+
