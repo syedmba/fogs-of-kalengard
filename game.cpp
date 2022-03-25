@@ -2,15 +2,68 @@
 #include <iomanip>
 #include <cmath>
 #include <stdio.h>
+#include <string>
 
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
 
 using namespace std;
 
+const int numRowsInArtI = 10;
+const int numColsInArtI = 410;
+
 
 const int mapHeight = 20;
 const int mapLength = 100;
+const int numMonsters = 20;
+
+
+void PrintTerrain(char terrain[mapHeight][mapLength]);
+void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]);
+void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]);
+void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]);
+void createPlanetAndStars(char array[]);
+
+
+
+
+
+
+void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
+
+    string planet[numRowsInArtI] = {
+    "        ~+                               ", 
+    "                 *       +               ",
+    "           '                  |          ",
+    "       ()    .-.,=\"\'\'\"=.    - o -        ",
+    "             '=/_       \\     |          ",
+    "          *   |  '=._    |               ",
+    "               \\     `=./`,        '     ",
+    "            .   '=.__.=' `='      *      ",
+    "   +                         +           ",
+    "        O      *        '       .        "
+    };
+
+    char planetAndStars[numRowsInArtI][numColsInArtI] = {
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '~', '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\'', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', '(', ')', ' ', ' ', ' ', ' ', '.', '-', '.', ',', '=', '"', '`', '`', '"', '=', '.', ' ', ' ', ' ', ' ', '-', ' ', 'o', ' ', '-', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\'', '=', '/', '_', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\\', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' ', ' ', ' ', '|', ' ', ' ', '\'', '=', '.', '_', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\\', ' ', ' ', ' ', ' ', ' ', '`', '=', '.', '/', '`', ',', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\'', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.', ' ', ' ', ' ', '\'', '=', '.', '_', '_', '.', '=', '\'', ' ', '`', '=', '\'', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '+', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, 
+    {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'O', ' ', ' ', ' ', ' ', ' ', ' ', '*', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '\'', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+    };
+
+    for (int i = 0; i < numRowsInArtI; i++){
+        for (int j = 0; j < numColsInArtI; j++){
+            array[i][j] = planetAndStars[i][j];
+        }
+    }
+}
+
 
 void printTerrain(char terrain[mapHeight][mapLength]){
 
@@ -24,6 +77,9 @@ void printTerrain(char terrain[mapHeight][mapLength]){
             }
             else if (terrain[i][j] == 's'){
                 cout << " ";
+            }
+            else if (terrain[i][j] == 'm'){
+                cout << "?";
             }
         }
         cout << endl;
@@ -45,14 +101,28 @@ void updateArray(){
 }
 
 
-void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
+void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]){
     // monster classification: literal or ranked?
     // skeletons, ogres, demons, dark elves, wyverns, goblins, dryad?, dragon!, elemental beings
 
     // number of monsters = one every 6 steps
 
     // monster loot/drops may be affected by the type and difficulty of monster
-    
+   
+
+    // int intervals[numMonsters] = {};
+
+    // for (int i = 0; i < 20; i++){
+    //     intervals[i] = 5*i;
+    // }
+
+    srand(time(0));
+
+    for (int i = 0; i < numMonsters; i++){
+        monsterPositions[i] = (rand() % 5) + (5*i);
+        terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[i]] + 1)][monsterPositions[i]] = 'm';
+    }
+
 }
 
 
@@ -129,10 +199,11 @@ void monsterfight(){
 
 }
 
-void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
+void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]){
 
     int currentPlayerRow = 0;
     int currentPlayerCol = 0;
+    int nextMonsterPosition = 99;
 
     for (int i = 0; i < mapHeight; i++){
         for (int j=0; j < mapLength; j++){
@@ -141,6 +212,13 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
                 currentPlayerCol = j;
                 break;
             }
+        }
+    }
+
+    for (int i = 0; i < numMonsters; i++){
+        if (monsterPositions[i] > currentPlayerCol){
+            nextMonsterPosition = monsterPositions[i];
+            break;
         }
     }
 
@@ -159,7 +237,11 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
     }
 
     // check to see whether player encounters world border or monster when attempting the input number of steps
-    if (steps + currentPlayerCol >= mapLength){
+    if (steps + currentPlayerCol >= nextMonsterPosition){
+        steps = nextMonsterPosition - currentPlayerCol - 1;
+        cout << "You encountered a monster at " << steps << " steps and cannot go any further." << endl;
+    }
+    else if (steps + currentPlayerCol >= mapLength){
         steps = mapLength - currentPlayerCol - 1;
         cout << "You have reached the right world border at " << steps << " steps and cannot go any further." << endl;
     }
@@ -167,8 +249,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
         steps = -currentPlayerCol;
         cout << "You have reached the left world border at " << -steps << " steps and cannot go any further." << endl;
     }
-
-
+    
 
     terrain[currentPlayerRow][currentPlayerCol] = 's';
     terrain[(mapHeight - 1) - (terrainHeight[steps + currentPlayerCol] + 1)][steps + currentPlayerCol] = 'p';
@@ -187,6 +268,8 @@ int main(){
 
     char terrain[mapHeight][mapLength] = {};
     int terrainHeight[mapLength] = {};
+    int monsterPositions[numMonsters] = {};
+
     // space = 's'
     // player = 'p
     // block = 'b'
@@ -202,13 +285,14 @@ int main(){
     }
 
     generateTerrain(terrain, terrainHeight);
+    generateMonsters(terrain, terrainHeight, monsterPositions);
 
     printTerrain(terrain);
 
-    bool walkOn = true;
+    bool walkOn = true; // static ??
 
     while (walkOn){
-        walk(terrain, terrainHeight);
+        walk(terrain, terrainHeight, monsterPositions);
         printTerrain(terrain);
     }
 
