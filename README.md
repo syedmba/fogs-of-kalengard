@@ -10,6 +10,14 @@ HOSSAIN Fahim
 
 ## Game Description
 
+start menu and pause menu
+player avatar?
+START GAME
+RESTART GAME
+RESUME
+OPTIONS ??
+QUIT
+
 monster encounters
 traps?
 lava/water?
