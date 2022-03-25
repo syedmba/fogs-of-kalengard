@@ -29,12 +29,16 @@ void print1DArray(string data[artHeight]){
 }
 
 void print2DArray(char array[artHeight][artWidth]){
+    int count = 0;
+    cout << "{";
     for (int i = 0; i < artHeight; i++){
         for (int j = 0; j < artWidth; j++){
-            cout << array[i][j];
+            cout << "\'" << array[i][j] << "\'" << ", ";
+            count += 1;
         }
-        cout << endl;
     }
+    cout << "};" << endl;
+    cout << count;
 }
 
 
