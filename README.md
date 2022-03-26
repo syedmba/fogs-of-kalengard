@@ -4,9 +4,9 @@ Project for COMP2113/ENGG1340
 
 ## Team Members
 
-BIN ASIF Syed Muhammad
+BIN ASIF Syed Muhammad (3035767401)
 
-HOSSAIN Fahim
+HOSSAIN Fahim (3035929798)
 
 ## Game Description
 
