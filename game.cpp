@@ -4,28 +4,43 @@
 #include <stdio.h>
 #include <string>
 
+#include "walk.h"
+#include "battle.h"
+
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
+#define FOG     "\xF0\x9F\x8C\xAB"
 
 using namespace std;
 
 const int numRowsInArtI = 10;
 const int numColsInArtI = 410;
 
+// const int maxLengthOfSkillName = 20;
+// const int totalPlayerSkills = 15;
 
-const int mapHeight = 20;
-const int mapLength = 100;
+
+// const int mapHeight = 20;
+// const int mapLength = 100;
 const int numMonsters = 20;
+
+
+// int playerHP = 100;
+// int playerDEF = 10;
 
 
 void PrintTerrain(char terrain[mapHeight][mapLength]);
 void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]);
 void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]);
-void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]);
+// void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]);
 void createPlanetAndStars(char array[]);
 
 
-
+// char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
+//     "blunt strike",
+//     "sword slash",
+//     "shield"
+// };
 
 
 
@@ -199,62 +214,7 @@ void monsterfight(){
 
 }
 
-void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]){
 
-    int currentPlayerRow = 0;
-    int currentPlayerCol = 0;
-    int nextMonsterPosition = 99;
-
-    for (int i = 0; i < mapHeight; i++){
-        for (int j=0; j < mapLength; j++){
-            if (terrain[i][j] == 'p'){
-                currentPlayerRow = i;
-                currentPlayerCol = j;
-                break;
-            }
-        }
-    }
-
-    for (int i = 0; i < numMonsters; i++){
-        if (monsterPositions[i] > currentPlayerCol){
-            nextMonsterPosition = monsterPositions[i];
-            break;
-        }
-    }
-
-
-    int steps = 0;
-    while (steps == 0){
-        cout << "Enter the number of steps you want to travel (negative to go back): ";
-        cin >> steps;
-        for (int i = 0; i < mapLength; i++){
-            cout << "-";
-        }
-        cout << endl;
-        if (steps == 0){
-            cout << "When in Kalengard, it's wise to keep moving..." << endl;
-        }
-    }
-
-    // check to see whether player encounters world border or monster when attempting the input number of steps
-    if (steps + currentPlayerCol >= nextMonsterPosition){
-        steps = nextMonsterPosition - currentPlayerCol - 1;
-        cout << "You encountered a monster at " << steps << " steps and cannot go any further." << endl;
-    }
-    else if (steps + currentPlayerCol >= mapLength){
-        steps = mapLength - currentPlayerCol - 1;
-        cout << "You have reached the right world border at " << steps << " steps and cannot go any further." << endl;
-    }
-    else if (steps + currentPlayerCol < 0){
-        steps = -currentPlayerCol;
-        cout << "You have reached the left world border at " << -steps << " steps and cannot go any further." << endl;
-    }
-    
-
-    terrain[currentPlayerRow][currentPlayerCol] = 's';
-    terrain[(mapHeight - 1) - (terrainHeight[steps + currentPlayerCol] + 1)][steps + currentPlayerCol] = 'p';
-
-}
 
 
 int dropLoot(){
