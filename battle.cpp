@@ -1,21 +1,23 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <stdio.h>
 #include <string>
+#include "battle.h"
+// #include <stdio.h>
 
 
 using namespace std;
 
+// const int maxLengthOfSkillName = 20;
 const int numOfMonsters = 10;
-const int totalPlayerSkills = 15;
+// const int totalPlayerSkills = 15;
 const int totalBattleMessages = 7;
 const int lucky_crit_number = 7;
 const int battleMenuWidth = 100;
 
 void printLine();
-void battleSkeleton();
-int main();
+// void battleSkeleton();
+// int main();
 
 static string monsterdict[numOfMonsters] = {
     "skeleton",
@@ -29,11 +31,11 @@ static string monsterdict[numOfMonsters] = {
     "elemental"
 };
 
-string playerActions[totalPlayerSkills] = {
-    "blunt strike",
-    "sword slash",
-    "shield"
-};
+// char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
+//     "blunt strike",
+//     "sword slash",
+//     "shield"
+// };
 
 // int atkStatForPlayerAction[totalPlayerSkills] = {
 //     33
@@ -50,7 +52,7 @@ string battleMessages[] = {
 };
 
 
-void battleSkeleton(string playerActions[totalPlayerSkills], int playerDEF, int &playerHP){
+void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int playerDEF, int &playerHP){
 
     // add levels to monsters?? 
 
@@ -101,7 +103,7 @@ void battleSkeleton(string playerActions[totalPlayerSkills], int playerDEF, int 
         int skill_counter = 1;
 
         for (int i = 0; i < totalPlayerSkills; i++){
-            if (playerActions[i] != ""){
+            if (playerActions[i]){
                 cout << skill_counter << ". " << playerActions[i] << endl;
                 skill_counter += 1;
             }
@@ -178,18 +180,18 @@ void printLine(){
     cout << endl;
 }
 
-int main(){
+// int main(){
 
-    int playerDEF = 10;
-    int playerHP = 100;
-    // for (int i = 0; i < numOfMonsters; i++){
-    //     cout << monsterdict[i] << endl;
-    // }
+//     int playerDEF = 10;
+//     int playerHP = 100;
+//     // for (int i = 0; i < numOfMonsters; i++){
+//     //     cout << monsterdict[i] << endl;
+//     // }
 
-    battleSkeleton(playerActions, playerDEF, playerHP);
+//     // battleSkeleton(playerActions, playerDEF, playerHP);
 
 
 
-    return 0;
-}
+//     return 0;
+// }
 
