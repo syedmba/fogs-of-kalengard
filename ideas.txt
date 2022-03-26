@@ -1,0 +1,12 @@
+expand the terrain and increase size of player sprite ?
+
+monster sprites visible on the terrain or displayed as "?" ?
+
+mist over unexplored terrain, cleared once stepped foot there?
+OR
+visibility constrained to a radius around the player (boosting the element of exploration)
+mist removed from each area after that whole area is cleared
+
+
+
+NPC Dialogue: O Traveler from Another World! Welcome to Wystennia ! This is the continent of Kalengard
