@@ -19,17 +19,20 @@
 battle.o: battle.cpp battle.h
 	g++ -c $<
 
-walk.o: walk.cpp walk.h battle.h
+walk.o: walk.cpp walk.h printterrain.h battle.h
 	g++ -c $<
 
-game.o: game.cpp walk.h battle.h
+printterrain.o: printterrain.cpp printterrain.h
 	g++ -c $<
 
-game: game.o walk.o battle.o
+game.o: game.cpp walk.h printterrain.h battle.h
+	g++ -c $<
+
+game: game.o walk.o printterrain.o battle.o
 	g++ $^ -o $@
 
 clean:
-	rm -f game game.o walk.o battle.o game.tgz
+	rm -f game game.o walk.o battle.o printterrain.o game.tgz
 
 .PHONY: clean
 
