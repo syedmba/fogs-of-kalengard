@@ -15,6 +15,8 @@ const int totalBattleMessages = 7;
 const int lucky_crit_number = 7;
 const int battleMenuWidth = 100;
 
+// bool enemy_defeated = false;
+
 void printLine();
 // void battleSkeleton();
 // int main();
@@ -52,7 +54,7 @@ string battleMessages[] = {
 };
 
 
-void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int playerDEF, int &playerHP){
+void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int playerDEF, int &playerHP, bool &enemyDefeated){
 
     // add levels to monsters?? 
 
@@ -161,9 +163,12 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
 
     if (playerHP == 0 && enemyHP == 0){
         cout << "Double Kill !" << endl;
+        enemyDefeated = true;
     }
     if (enemyHP == 0){
         cout << "You have defeated << Skeleton >>." << endl;
+        enemyDefeated = true;
+        // cout << enemy_defeated;
     }
     if (playerHP == 0){
         cout << "<< Skeleton >> has slain you." << endl;

@@ -5,6 +5,7 @@
 #include <string>
 #include "battle.h"
 #include "walk.h"
+#include "printterrain.h"
 
 using namespace std;
 
@@ -22,9 +23,12 @@ char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
 
 void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]){
 
+    bool battleInitiated = false;
+
     int currentPlayerRow = 0;
     int currentPlayerCol = 0;
     int nextMonsterPosition = 99;
+    int nextMonsterIndex = 19;
 
     for (int i = 0; i < mapHeight; i++){
         for (int j=0; j < mapLength; j++){
@@ -58,10 +62,10 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
     }
 
     // check to see whether player encounters world border or monster when attempting the input number of steps
-    if (steps + currentPlayerCol >= nextMonsterPosition){
+    if ((steps + currentPlayerCol >= nextMonsterPosition) && (terrain[(mapHeight - 1) - (terrainHeight[nextMonsterPosition] + 1)][nextMonsterPosition] == 'm')){
         steps = nextMonsterPosition - currentPlayerCol - 1;
         cout << "You encountered a monster at " << steps << " steps and cannot go any further." << endl;
-        battle(playerActions, playerDEF, playerHP);
+        battleInitiated = true;
     }
     else if (steps + currentPlayerCol >= mapLength){
         steps = mapLength - currentPlayerCol - 1;
@@ -75,5 +79,18 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
 
     terrain[currentPlayerRow][currentPlayerCol] = 's';
     terrain[(mapHeight - 1) - (terrainHeight[steps + currentPlayerCol] + 1)][steps + currentPlayerCol] = 'p';
+
+    printTerrain(terrain);
+
+    if (battleInitiated){
+
+        bool enemyDefeated = false;
+        battle(playerActions, playerDEF, playerHP, enemyDefeated);
+        // cout << enemy_defeated;
+        if (enemyDefeated){
+            terrain[(mapHeight - 1) - (terrainHeight[nextMonsterPosition] + 1)][nextMonsterPosition] = 's';
+        }
+        printTerrain(terrain);
+    }
 
 }

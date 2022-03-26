@@ -6,6 +6,7 @@
 
 #include "walk.h"
 #include "battle.h"
+#include "printterrain.h"
 
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
@@ -29,7 +30,7 @@ const int numMonsters = 20;
 // int playerDEF = 10;
 
 
-void PrintTerrain(char terrain[mapHeight][mapLength]);
+// void PrintTerrain(char terrain[mapHeight][mapLength]);
 void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]);
 void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]);
 // void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]);
@@ -80,35 +81,35 @@ void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
 }
 
 
-void printTerrain(char terrain[mapHeight][mapLength]){
+// void printTerrain(char terrain[mapHeight][mapLength]){
 
-    for (int i = 0; i < mapHeight; i++){
-        for (int j=0; j < mapLength; j++){
-            if (terrain[i][j] == 'b'){
-                cout << BLOCK;
-            }
-            else if(terrain[i][j] == 'p'){
-                cout << PLAYER;
-            }
-            else if (terrain[i][j] == 's'){
-                cout << " ";
-            }
-            else if (terrain[i][j] == 'm'){
-                cout << "?";
-            }
-        }
-        cout << endl;
-    }
+//     for (int i = 0; i < mapHeight; i++){
+//         for (int j=0; j < mapLength; j++){
+//             if (terrain[i][j] == 'b'){
+//                 cout << BLOCK;
+//             }
+//             else if(terrain[i][j] == 'p'){
+//                 cout << PLAYER;
+//             }
+//             else if (terrain[i][j] == 's'){
+//                 cout << " ";
+//             }
+//             else if (terrain[i][j] == 'm'){
+//                 cout << "?";
+//             }
+//         }
+//         cout << endl;
+//     }
     
-    for (int times = 0; times < 1; times++){
-        for (int i = 0; i < mapLength; i++){
-            cout << "-";
-        }
-        cout << endl;
-    }
+//     for (int times = 0; times < 1; times++){
+//         for (int i = 0; i < mapLength; i++){
+//             cout << "-";
+//         }
+//         cout << endl;
+//     }
     
 
-}
+// }
 
 
 void updateArray(){
@@ -253,7 +254,6 @@ int main(){
 
     while (walkOn){
         walk(terrain, terrainHeight, monsterPositions);
-        printTerrain(terrain);
     }
 
     
