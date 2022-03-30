@@ -2,7 +2,11 @@
 #include <iomanip>
 #include <cmath>
 #include <string>
+#include <ncurses.h>
+#include <unistd.h>
+
 #include "battle.h"
+#include "skeletonart.h"
 // #include <stdio.h>
 
 
@@ -58,7 +62,15 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
 
     // add levels to monsters?? 
 
-    cout << "You have encountered a << Skeleton >> monster !" << endl;
+    clear();
+
+    printSkeleton();
+
+    refresh();
+
+    cout << "You have encountered a << Skeleton >> monster !\r" << endl;
+
+    refresh();
     const int numAttacks = 4;
 
     int enemyHP = 100;
@@ -96,28 +108,31 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         int this_monster_atk = rand() % numAttacks;
         int crit_factor = 1;
 
-        cout << "<< Skeleton >> is about to do a " << attack[this_monster_atk] << "..." << endl;
+        cout << "<< Skeleton >> is about to do a " << attack[this_monster_atk] << "...\r" << endl;
         
         int this_message = rand() % totalBattleMessages; 
-        cout << battleMessages[this_message] << endl;
-        cout << "Available skills:" << endl;
+        cout << battleMessages[this_message] << "\r" << endl;
+        cout << "Available skills:\r" << endl;
 
         int skill_counter = 1;
 
         for (int i = 0; i < totalPlayerSkills; i++){
             if (playerActions[i]){
-                cout << skill_counter << ". " << playerActions[i] << endl;
+                cout << skill_counter << ". " << playerActions[i] << "\r" << endl;
                 skill_counter += 1;
             }
         }
         
         int response;
-        cout << "Choose your response: ";
+        cout << "Choose your response: \r" << endl;
+
+        refresh();
+        
         cin >> response;
 
         printLine();
 
-        cout << "<< Skeleton >> did a " << attack[this_monster_atk] << " and you did a " << playerActions[response - 1] << "." << endl;
+        cout << "<< Skeleton >> did a " << attack[this_monster_atk] << " and you did a " << playerActions[response - 1] << ".\r" << endl;
 
         int crit_determiner = rand() % 10;
         if (crit_determiner == lucky_crit_number){
@@ -139,11 +154,11 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         }
 
         if (crit_factor == 2 && damageToEnemy > 0){
-            cout << "You dealt a critical hit !" << endl;
+            cout << "You dealt a critical hit !\r" << endl;
         }
 
         cout << "You inflicted " << damageToEnemy << " points of DMG to the << Skeleton >> ";
-        cout << "and received " << damageToPlayer << " points of damage." << endl;
+        cout << "and received " << damageToPlayer << " points of damage.\r" << endl;
 
         playerHP -= damageToPlayer;
         enemyHP -= damageToEnemy;
@@ -156,22 +171,22 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
             enemyHP = 0;
         }
 
-        cout << "Player HP: " << playerHP << " || << Skeleton >> HP: " << enemyHP << endl;
+        cout << "Player HP: " << playerHP << " || << Skeleton >> HP: " << enemyHP << "\r" << endl;
     }
 
     printLine();
 
     if (playerHP == 0 && enemyHP == 0){
-        cout << "Double Kill !" << endl;
+        cout << "Double Kill !\r" << endl;
         enemyDefeated = true;
     }
     if (enemyHP == 0){
-        cout << "You have defeated << Skeleton >>." << endl;
+        cout << "You have defeated << Skeleton >>.\r" << endl;
         enemyDefeated = true;
         // cout << enemy_defeated;
     }
     if (playerHP == 0){
-        cout << "<< Skeleton >> has slain you." << endl;
+        cout << "<< Skeleton >> has slain you.\r" << endl;
     }
 
     printLine();
@@ -182,7 +197,7 @@ void printLine(){
     for (int i = 0; i < battleMenuWidth; i++){
         cout << "-";
     }
-    cout << endl;
+    cout << "\r" << endl;
 }
 
 // int main(){

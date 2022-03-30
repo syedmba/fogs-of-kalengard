@@ -3,6 +3,9 @@
 #include <cmath>
 #include <stdio.h>
 #include <string>
+#include <ncurses.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 #include "walk.h"
 #include "battle.h"
@@ -11,6 +14,10 @@
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
 #define FOG     "\xF0\x9F\x8C\xAB"
+#define SWORDS  "\xE2\x9A\x94"
+#define EGREEN  "\xF0\x9F\x8C\xB2"
+#define DECID   "\xF0\x9F\x8C\xB3"
+#define PALM    "\xF0\x9F\x8C\xB4"
 
 using namespace std;
 
@@ -23,7 +30,7 @@ const int numColsInArtI = 410;
 
 // const int mapHeight = 20;
 // const int mapLength = 100;
-const int numMonsters = 20;
+const int numMonsters = 19;
 
 
 // int playerHP = 100;
@@ -135,7 +142,7 @@ void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapL
     srand(time(0));
 
     for (int i = 0; i < numMonsters; i++){
-        monsterPositions[i] = (rand() % 5) + (5*i);
+        monsterPositions[i] = (rand() % 5) + (5*(i+1));
         terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[i]] + 1)][monsterPositions[i]] = 'm';
     }
 
@@ -226,6 +233,7 @@ int dropLoot(){
 
 int main(){
 
+    initscr();
 
     char terrain[mapHeight][mapLength] = {};
     int terrainHeight[mapLength] = {};
@@ -248,7 +256,14 @@ int main(){
     generateTerrain(terrain, terrainHeight);
     generateMonsters(terrain, terrainHeight, monsterPositions);
 
-    printTerrain(terrain);
+    clear();
+    refresh();
+
+    printTerrain(terrain, 0, mapHeight - terrainHeight[0] - 2);
+
+    refresh();
+
+    usleep(5);
 
     bool walkOn = true; // static ??
 
@@ -256,7 +271,7 @@ int main(){
         walk(terrain, terrainHeight, monsterPositions);
     }
 
-    
+    endwin();
 
     return 0;
 }
