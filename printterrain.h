@@ -7,6 +7,6 @@
 const int mapHeight = 20;
 const int mapLength = 100;
 
-void printTerrain(char terrain[mapHeight][mapLength]);
+void printTerrain(char terrain[mapHeight][mapLength], int playerCol, int playerRow);
 
 #endif
