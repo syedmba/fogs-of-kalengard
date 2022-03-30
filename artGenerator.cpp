@@ -6,8 +6,8 @@
 
 using namespace std;
 
-const int artHeight = 10;
-const int artWidth = 41;
+const int artHeight = 40;
+const int artWidth = 70;
 
 
 void convertArtToAsciiArray(string data[artHeight], char array[artHeight][artWidth]){
@@ -15,8 +15,10 @@ void convertArtToAsciiArray(string data[artHeight], char array[artHeight][artWid
     for (int i = 0; i < artHeight; i++){
         getline(cin, entry);
         data[i] = entry;
-        for (int j = 0; j < artWidth; j++){
-            array[i][j] = entry[j];
+        for (int j = 0; j < entry.length(); j++){
+            if (entry[j]){
+                array[i][j] = entry[j];
+            }
         }
     }
 }
@@ -33,8 +35,19 @@ void print2DArray(char array[artHeight][artWidth]){
     cout << "{";
     for (int i = 0; i < artHeight; i++){
         for (int j = 0; j < artWidth; j++){
-            cout << "\'" << array[i][j] << "\'" << ", ";
-            count += 1;
+            if (array[i][j] == '\''){
+                cout << "\'" << "\\" << "\'" << "\'" << ", ";
+            }
+            else if (array[i][j] == '`'){
+                cout << "\'" << "\\" << "\'" << "\'" << ", ";
+            }
+            else if (array[i][j] == '\\'){
+                cout << "\'" << "\\" << "\\" << "\'" << ", ";
+            }
+            else{
+                cout << "\'" << array[i][j] << "\'" << ", ";
+                count += 1;
+            }
         }
     }
     cout << "};" << endl;
@@ -48,11 +61,21 @@ void initializeArray(string data[artHeight]){
     }
 }
 
+void initializeCharArray(char array[artHeight][artWidth]){
+    for (int i = 0; i < artHeight; i++){
+        for (int j = 0; j < artWidth; j++){
+            array[i][j] = ' ';
+        }
+    }
+}
+
 
 int main(){
     
     string planetAndStars[artHeight] = {};
     char dataArray[artHeight][artWidth] = {};
+
+    initializeCharArray(dataArray);
 
     convertArtToAsciiArray(planetAndStars, dataArray);
 
