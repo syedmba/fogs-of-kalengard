@@ -16,23 +16,26 @@
 # calc: calc.o lcm.o gcd.o
 # 	g++ $(FLAGS) $^ -o $@
 
-battle.o: battle.cpp battle.h
+skeletonart.o: skeletonart.cpp skeletonart.h
 	g++ -c $<
 
-walk.o: walk.cpp walk.h printterrain.h battle.h
+battle.o: battle.cpp battle.h skeletonart.h
+	g++ -c $<
+
+walk.o: walk.cpp walk.h printterrain.h battle.h skeletonart.h
 	g++ -c $<
 
 printterrain.o: printterrain.cpp printterrain.h
 	g++ -c $<
 
-game.o: game.cpp walk.h printterrain.h battle.h
+game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h
 	g++ -c $<
 
-game: game.o walk.o printterrain.o battle.o
-	g++ $^ -o $@
+game: game.o walk.o printterrain.o battle.o skeletonart.o
+	g++ $^ -lncurses -o $@
 
 clean:
-	rm -f game game.o walk.o battle.o printterrain.o game.tgz
+	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o game.tgz
 
 .PHONY: clean
 
