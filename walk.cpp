@@ -67,6 +67,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
 
     int enteredValue = 0;
     int steps = 0;
+    char response;
 
     // cout << "Enter the number of steps you want to travel (negative to go back): ";
     
@@ -99,6 +100,8 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         // refresh();
         // bool modeEntered = false;
         // initscr();
+        // cin >> response;
+        // cout << response;
         if (getchar() == '\033') { // if the first value is esc
             getchar(); // skip the [
             // switch(getchar()) { // the real value
@@ -119,8 +122,10 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
             //         break;
             // }
             enteredValue = getchar();
+            // cout << enteredValue;
             // modeEntered = true;
             // getch(); // so that it doesn't take an extra empty input and print the terrain twice
+            getchar();
         }
         // endwin();
 
