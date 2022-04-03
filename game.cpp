@@ -3,9 +3,9 @@
 #include <cmath>
 #include <stdio.h>
 #include <string>
-#include <ncurses.h>
+// #include <ncurses.h>
 #include <stdlib.h>
-#include <unistd.h>
+// #include <unistd.h>
 
 #include "walk.h"
 #include "battle.h"
@@ -21,21 +21,25 @@
 
 using namespace std;
 
+
+// variable declarations
+
 const int numRowsInArtI = 10;
 const int numColsInArtI = 410;
 
 // const int maxLengthOfSkillName = 20;
 // const int totalPlayerSkills = 15;
 
-
 // const int mapHeight = 20;
 // const int mapLength = 100;
 const int numMonsters = 19;
 
-
 // int playerHP = 100;
 // int playerDEF = 10;
 
+
+
+// function prototypes
 
 // void PrintTerrain(char terrain[mapHeight][mapLength]);
 void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]);
@@ -124,6 +128,14 @@ void updateArray(){
 }
 
 
+
+// this function generates a set number of monsters at random positions on the terrain of a game area
+// the area is passed as a 2d array called terrain with height and length stored as const values
+// the function also accepts a 1D array that contains the terrain altitude at each column
+// as well as an empty 1D array called monsterPositions
+// the function generates random column values for specific intervals
+// the function then adds the symbol for monsters (?) to the terrain array at those columns
+// monsterPositions will then be updated to contain the positions of monsters in the terrain
 void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]){
     // monster classification: literal or ranked?
     // skeletons, ogres, demons, dark elves, wyverns, goblins, dryad?, dragon!, elemental beings
@@ -159,6 +171,9 @@ void collectiblePicked(){
 }
 
 
+// this function generateTerrain() initializes a random 2D terrain
+// the first argument passed is a 2D array called terrain, which will contain the terrain generated randomly in this function
+// the second argument passed is a 1D array called terrainHeight, which will contain the height of the terrain at each column
 void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
     
     srand(time(0));
@@ -231,9 +246,11 @@ int dropLoot(){
 }
 
 
+// the main() function of the game
+// this function contains the main framework of the game
 int main(){
 
-    initscr();
+    // initscr();
 
     char terrain[mapHeight][mapLength] = {};
     int terrainHeight[mapLength] = {};
@@ -245,7 +262,7 @@ int main(){
     // water? monster? collectible?
 
 
-    cout << terrain[0]<< endl;
+    // cout << terrain[0]<< endl;
 
     for (int i = 0; i < mapHeight; i++){
         for (int j=0; j < mapLength; j++){
@@ -256,14 +273,18 @@ int main(){
     generateTerrain(terrain, terrainHeight);
     generateMonsters(terrain, terrainHeight, monsterPositions);
 
-    clear();
-    refresh();
+    // clear();
+    // refresh();
 
     printTerrain(terrain, 0, mapHeight - terrainHeight[0] - 2);
 
-    refresh();
+    // int test;
 
-    usleep(5);
+    // cin >> test;
+
+    // refresh();
+
+    // usleep(5);
 
     bool walkOn = true; // static ??
 
@@ -271,7 +292,7 @@ int main(){
         walk(terrain, terrainHeight, monsterPositions);
     }
 
-    endwin();
+    // endwin();
 
     return 0;
 }
