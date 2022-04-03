@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#include <unistd.h>
-#include <ncurses.h>
+// #include <unistd.h>
+// #include <ncurses.h>
 
 
 #include "battle.h"
@@ -14,21 +14,31 @@
 
 using namespace std;
 
-
+// number of monsters on the terrain
 const int numMonsters = 20;
 
+// player stats
 int playerHP = 100;
 int playerDEF = 10;
 
+// array that contains the skills a player currently has
 char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
     "blunt strike",
     "sword slash",
     "shield"
 };
 
+
+// this function allows the player to move across the terrain of any area in the game
+// the area is passed as a 2d array called terrain with height and length stored as const values
+// the function also accepts a 1D array that contains the terrain altitude at each column
+// as well as a 1D array that contains the positions of monsters in the terrain
+// this function takes input (arrow keys?) from the player
+// then moves the player correspondingly
+// and then updates the player position in the 2d array
 void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]){
 
-    usleep(5);
+    // usleep(5);
     // initscr();
 
     bool battleInitiated = false;
@@ -55,7 +65,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         }
     }
 
-    int enteredValue;
+    int enteredValue = 0;
     int steps = 0;
 
     // cout << "Enter the number of steps you want to travel (negative to go back): ";
@@ -84,11 +94,13 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
     
     while (steps == 0){
         // cout << "Enter the number of steps you want to travel (negative to go back): ";
-        cout << "Press an arrow key (<- or ->) and press ENTER to move: \r";
+        cout << "Press an arrow key (<- or ->) and press ENTER to move: " << endl;
         // printw("Press an arrow key (<- or ->) and press ENTER to move: ");
         // refresh();
-        if (getch() == '\033') { // if the first value is esc
-            getch(); // skip the [
+        // bool modeEntered = false;
+        // initscr();
+        if (getchar() == '\033') { // if the first value is esc
+            getchar(); // skip the [
             // switch(getchar()) { // the real value
             //     // case 'A':
             //     //     // code for arrow up
@@ -106,29 +118,33 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
             //         cout << endl;
             //         break;
             // }
-            enteredValue = getch();
+            enteredValue = getchar();
+            // modeEntered = true;
             // getch(); // so that it doesn't take an extra empty input and print the terrain twice
-            if (enteredValue == 'C'){
-                cout << "You pressed the right arrow key\r" << endl;
-                steps = 1;
-            }
-            else if (enteredValue == 'D'){
-                cout << "You pressed the left arrow key\r" << endl;
-                steps = -1;
-            }
-            else {
-                cout << "Wrong input\r" << endl;
-                steps = 0;
-            }
+        }
+        // endwin();
+
+        if (enteredValue == 'C'){
+            cout << "You pressed the right arrow key" << endl;
+            steps = 1;
+        }
+        else if (enteredValue == 'D'){
+            cout << "You pressed the left arrow key" << endl;
+            steps = -1;
+        }
+        else {
+            cout << "Wrong input" << endl;
+            steps = 0;
         }
         
         for (int i = 0; i < mapLength; i++){
             cout << "-";
         }
         cout << endl;
+
         if (steps == 0){
-            cout << steps << endl;
-            cout << "When in Kalengard, it's wise to keep moving...\r" << endl;
+            // cout << steps << endl;
+            cout << "When in Kalengard, it's wise to keep moving..." << endl;
         }
     }
 
@@ -137,7 +153,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         steps = nextMonsterPosition - currentPlayerCol - 1;
         // system("clear");
         
-        cout << "You encountered a monster at " << steps << " steps and cannot go any further.\r" << endl;
+        cout << "You encountered a monster at " << steps << " steps and cannot go any further." << endl;
         battleInitiated = true;
     }
     else if (steps + currentPlayerCol >= mapLength){
@@ -145,14 +161,14 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         // system("clear");
         // refresh();
         
-        cout << "You have reached the right world border at " << steps << " steps and cannot go any further.\r" << endl;
+        cout << "You have reached the right world border at " << steps << " steps and cannot go any further." << endl;
     }
     else if (steps + currentPlayerCol < 0){
         steps = -currentPlayerCol;
         // system("clear");
         // refresh();
         
-        cout << "You have reached the left world border at " << -steps << " steps and cannot go any further.\r" << endl;
+        cout << "You have reached the left world border at " << -steps << " steps and cannot go any further." << endl;
     }
     
     // endwin();
@@ -163,13 +179,14 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
 
     int playerRow = (mapHeight - 1) - (terrainHeight[steps + currentPlayerCol] + 1);
 
-    clear();
+    // clear();
 
     printTerrain(terrain, steps + currentPlayerCol, playerRow);
+    
 
     if (battleInitiated){
 
-        clear();
+        // clear();
         // refresh();
 
         // endwin();
@@ -186,7 +203,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         // endwin();
         // initscr();
 
-        clear();
+        // clear();
 
         printTerrain(terrain, steps + currentPlayerCol, playerRow);
     }
