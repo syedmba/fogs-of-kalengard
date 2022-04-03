@@ -2,10 +2,14 @@
 #include <string>
 #include <ncurses.h>
 
+#include "npcdialogueone.h"
+
 using namespace std;
 
 void printMessage(string npcName, string message);
-void printLine();
+void printMessageLine();
+void initiateDialogue(string npcName);
+
 
 const int textBoxWidth = 100;
 const int maxMessageLines = 7;
@@ -91,19 +95,19 @@ void printMessage(string npcName, string message){
     //     messagePartitions[i] = message.substr(textBoxWidth*i, textBoxWidth));
     // }
 
-    printLine();
+    printMessageLine();
     cout << "<---> || " << npcName << " || <--->" << endl;
     for (int i = 0; i <= maxMessageLines; i++){
         if (messagePartitions[i].length() > 0){
             cout << messagePartitions[i] << endl;
         }
     }
-    printLine();
+    printMessageLine();
 }
 
 
 // this function prints a line of dashes
-void printLine(){
+void printMessageLine(){
     for (int i = 0; i < textBoxWidth; i++){
         cout << "-";
     }
@@ -112,6 +116,6 @@ void printLine(){
 
 
 // dummy func
-int main(){
-    initiateDialogue("Knight Commander Drakyn");
-}
+// int main(){
+//     initiateDialogue("Knight Commander Drakyn");
+// }
