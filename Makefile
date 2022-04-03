@@ -32,7 +32,7 @@ game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h
 	g++ -c $<
 
 game: game.o walk.o printterrain.o battle.o skeletonart.o
-	g++ $^ -lncurses -o $@
+	g++ $^ -o $@
 
 clean:
 	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o game.tgz
