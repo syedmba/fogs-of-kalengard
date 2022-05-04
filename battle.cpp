@@ -30,54 +30,76 @@ const int numAttacks = 4;
 void printLine();
 
 
+int monsterStats[9][5] = {
+    {100, 10, 1, 0, 0},   // skeleton HP, DEF, ATK
+    {70, 5, 2, 0, 0},     // goblin
+    {}, 
+    {}, 
+    {}, 
+    {}, 
+    {}, 
+    {10000, 200, 90, 0, 30}, 
+    {}
+};
 
 struct MonsterStats{
     int HP;
     int DEF;
     int ATK;
+    int MAGATK;
+    int MAGRES;
+    MonsterStats(int stats[5]){
+        this->HP = stats[0];
+        this->DEF = stats[1];
+        this->ATK = stats[2];
+        this->MAGATK = stats[3];
+        this->MAGRES = stats[4];
+    }
 };
 
-struct Ogre{
+// struct Ogre{
+//     MonsterStats stats;
+// };
+
+// struct Skeleton{
+//     MonsterStats stats;
+//     string attack[numAttacks] = {
+//         "diagonal slash", 
+//         "thrust", 
+//         "vertical slash", 
+//         "horizontal slash"
+//     };
+//     int dmg[numAttacks] = {20, 40, 20, 25};
+// };
+
+struct Monster{
     MonsterStats stats;
+    string MonsterAttacks[numAttacks];
+    int MonsterAttackDamages[numAttacks];
+    // Monster(MonsterStats stats){
+    //     this->stats = stats;
+    // }
 };
 
-struct Skeleton{
-    MonsterStats stats;
-    string attack[numAttacks] = {
-        "diagonal slash", 
-        "thrust", 
-        "vertical slash", 
-        "horizontal slash"
-    };
-    int dmg[numAttacks] = {20, 40, 20, 25};
-};
+// replicate for other monsters
+Monster Skeleton = {MonsterStats(monsterStats[0]), {"diagonal slash", "thrust", "vertical slash", "horizontal slash"}, {20, 40, 20, 25} };
 
 
 // array that contains types of monsters discoverable
 // hasn't been implemented yet
 static string monsterdict[numOfMonsters] = {
-    "skeleton",
-    "goblin",
-    "ogre",
-    "demons",
-    "dark elf",
-    "wyvern",
-    "dryad",
-    "dragon",
-    "elemental"
+    "Skeleton",
+    "Goblin",
+    "Ogre",
+    "Demon",
+    "Dark elf",
+    "Wyvern",
+    "Dryad",
+    "Dragon",
+    "Elemental"
 };
 
-int monsterStats[9][3] = {
-    {100, 10, 1},   // skeleton HP, DEF, ATK
-    {70, 5, 2},     // goblin
-    {}, 
-    {}, 
-    {}, 
-    {}, 
-    {}, 
-    {}, 
-    {}
-};
+
 int monsterAtkDmg[] = {};
 
 
@@ -113,14 +135,17 @@ string battleMessages[] = {
 // that bool value is then used by the outer function calling battle() to update the monster positions on the terrain
 void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int playerDEF, int &playerHP, bool &enemyDefeated){
 
+    srand(time(0));
+    int whichMonster = rand() % 9;
     // add levels to monsters?? 
 
     printSkeleton();
     // printMonster(randomnum);
 
 
-    cout << "You have encountered a << Skeleton >> monster !" << endl;
-    // cout << "You have encountered a << monsterdict(randomnum) >> monster !" << endl;
+    // cout << "You have encountered a << Skeleton >> monster !" << endl;
+    cout << "You have encountered a " << monsterdict[whichMonster] << " >> monster !" << endl;
+    Monster thisMonster = Skeleton; // change to applicable for all
 
     int enemyHP = 100;
     int enemyDEF = 10;
