@@ -22,6 +22,22 @@
 using namespace std;
 
 
+
+struct MonsterStats{
+    int HP;
+    int DEF;
+    int ATK;
+};
+
+struct Ogre{
+    MonsterStats stats;
+};
+
+struct Skeleton{
+    MonsterStats stats;
+};
+
+
 // variable declarations
 
 const int numRowsInArtI = 10;
