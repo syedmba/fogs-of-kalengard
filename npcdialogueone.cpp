@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <ncurses.h>
+#include <unistd.h>
 
 #include "npcdialogueone.h"
 
@@ -34,6 +35,7 @@ string Drakyn[conversationLengthDrakyn] = {
 void initiateDialogue(string npcName){
     for (int i = 0; i < conversationLengthDrakyn; i++){
         printMessage(npcName, Drakyn[i]);
+        getchar();
     }
 }
 
