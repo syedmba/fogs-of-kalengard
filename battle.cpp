@@ -20,11 +20,37 @@ const int numOfMonsters = 10;
 const int totalBattleMessages = 7;
 const int lucky_crit_number = 7;
 const int battleMenuWidth = 100;
+
+
+const int numAttacks = 4;
 // bool enemy_defeated = false;
 
 
 // function prototype
 void printLine();
+
+
+
+struct MonsterStats{
+    int HP;
+    int DEF;
+    int ATK;
+};
+
+struct Ogre{
+    MonsterStats stats;
+};
+
+struct Skeleton{
+    MonsterStats stats;
+    string attack[numAttacks] = {
+        "diagonal slash", 
+        "thrust", 
+        "vertical slash", 
+        "horizontal slash"
+    };
+    int dmg[numAttacks] = {20, 40, 20, 25};
+};
 
 
 // array that contains types of monsters discoverable
@@ -40,6 +66,19 @@ static string monsterdict[numOfMonsters] = {
     "dragon",
     "elemental"
 };
+
+int monsterStats[9][3] = {
+    {100, 10, 1},   // skeleton HP, DEF, ATK
+    {70, 5, 2},     // goblin
+    {}, 
+    {}, 
+    {}, 
+    {}, 
+    {}, 
+    {}, 
+    {}
+};
+int monsterAtkDmg[] = {};
 
 
 // char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
@@ -76,16 +115,12 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
 
     // add levels to monsters?? 
 
-    // clear();
-
     printSkeleton();
+    // printMonster(randomnum);
 
-    // refresh();
 
     cout << "You have encountered a << Skeleton >> monster !" << endl;
-
-    // refresh();
-    const int numAttacks = 4;
+    // cout << "You have encountered a << monsterdict(randomnum) >> monster !" << endl;
 
     int enemyHP = 100;
     int enemyDEF = 10;
@@ -140,10 +175,7 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         int response;
         cout << "Choose your response: " << endl;
 
-        // refresh();
-
         cin >> response;
-        // response = getchar();
 
         printLine();
 
