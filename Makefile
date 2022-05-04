@@ -19,23 +19,26 @@
 skeletonart.o: skeletonart.cpp skeletonart.h
 	g++ -c $<
 
+npcdialogueone.o: npcdialogueone.cpp npcdialogueone.h
+	g++ -c $<
+
 battle.o: battle.cpp battle.h skeletonart.h
 	g++ -c $<
 
-walk.o: walk.cpp walk.h printterrain.h battle.h skeletonart.h
+walk.o: walk.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h
 	g++ -c $<
 
 printterrain.o: printterrain.cpp printterrain.h
 	g++ -c $<
 
-game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h
+game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h
 	g++ -c $<
 
-game: game.o walk.o printterrain.o battle.o skeletonart.o
+game: game.o walk.o printterrain.o battle.o skeletonart.o npcdialogueone.o
 	g++ $^ -o $@
 
 clean:
-	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o game.tgz
+	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o npcdialogueone.o game.tgz
 
 .PHONY: clean
 
