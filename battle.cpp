@@ -20,6 +20,7 @@ const int numOfMonsters = 10;
 const int totalBattleMessages = 7;
 const int lucky_crit_number = 7;
 const int battleMenuWidth = 100;
+const int numStats = 5;
 
 
 const int numAttacks = 4;
@@ -30,7 +31,7 @@ const int numAttacks = 4;
 void printLine();
 
 
-int monsterStats[9][5] = {
+int monsterStats[numOfMonsters][numStats] = {
     {100, 10, 1, 0, 0},   // skeleton HP, DEF, ATK
     {70, 5, 2, 0, 0},     // goblin
     {}, 
@@ -39,6 +40,7 @@ int monsterStats[9][5] = {
     {}, 
     {}, 
     {10000, 200, 90, 0, 30}, 
+    {},
     {}
 };
 
@@ -48,7 +50,7 @@ struct MonsterStats{
     int ATK;
     int MAGATK;
     int MAGRES;
-    MonsterStats(int stats[5]){
+    MonsterStats(int stats[numStats]){
         this->HP = stats[0];
         this->DEF = stats[1];
         this->ATK = stats[2];
@@ -82,25 +84,34 @@ struct Monster{
 };
 
 // replicate for other monsters
-Monster Skeleton = {MonsterStats(monsterStats[0]), {"diagonal slash", "thrust", "vertical slash", "horizontal slash"}, {20, 40, 20, 25} };
+// Monster Skeleton = {MonsterStats(monsterStats[0]), {"diagonal slash", "thrust", "vertical slash", "horizontal slash"}, {20, 40, 20, 25} };
 
 
 // array that contains types of monsters discoverable
 // hasn't been implemented yet
-static string monsterdict[numOfMonsters] = {
-    "Skeleton",
-    "Goblin",
-    "Ogre",
-    "Demon",
-    "Dark elf",
+static string monsterdict[numOfMonsters][numAttacks + 1] = {
+    {"Skeleton", "diagonal slash", "thrust", "vertical slash", "horizontal slash"},
+    {"Goblin"},
+    {"Ogre"},
+    {"Demon"},
+    {"Dark elf"},
     "Wyvern",
     "Dryad",
     "Dragon",
     "Elemental"
+    "Make Something Up"
 };
 
 
-int monsterAtkDmg[] = {};
+int monsterAtkDmg[numOfMonsters][numAttacks] = {
+    {},
+    {}
+};
+
+// string monsterAttacks[numOfMonsters] = {
+
+// };
+// discarded
 
 
 // char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
@@ -145,7 +156,7 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
 
     // cout << "You have encountered a << Skeleton >> monster !" << endl;
     cout << "You have encountered a " << monsterdict[whichMonster] << " >> monster !" << endl;
-    Monster thisMonster = Skeleton; // change to applicable for all
+    Monster thisMonster = {MonsterStats(monsterStats[whichMonster]), {}, {}}; // create struct for this monster
 
     int enemyHP = 100;
     int enemyDEF = 10;
