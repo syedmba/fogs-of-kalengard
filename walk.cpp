@@ -14,6 +14,9 @@
 
 using namespace std;
 
+// add to header file
+void Inventory();
+
 // number of monsters on the terrain
 const int numMonsters = 20;
 
@@ -102,7 +105,8 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         // initscr();
         // cin >> response;
         // cout << response;
-        if (getchar() == '\033') { // if the first value is esc
+        enteredValue = getchar();
+        if (enteredValue == '\033') { // if the first value is esc
             getchar(); // skip the [
             // switch(getchar()) { // the real value
             //     // case 'A':
@@ -126,6 +130,8 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
             // modeEntered = true;
             // getch(); // so that it doesn't take an extra empty input and print the terrain twice
             getchar();
+        } else if (enteredValue == 'e'){
+            Inventory();
         }
         // endwin();
 
