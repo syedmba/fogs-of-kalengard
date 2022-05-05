@@ -89,18 +89,7 @@ struct Monster{
 
 // array that contains types of monsters discoverable
 // hasn't been implemented yet
-static string monsterdict[numOfMonsters][numAttacks + 1] = {
-    {"Skeleton", "diagonal slash", "thrust", "vertical slash", "horizontal slash"},
-    {"Goblin"},
-    {"Ogre"},
-    {"Demon"},
-    {"Dark elf"},
-    "Wyvern",
-    "Dryad",
-    "Dragon",
-    "Elemental"
-    "Make Something Up"
-};
+
 
 
 int monsterAtkDmg[numOfMonsters][numAttacks] = {
