@@ -89,18 +89,7 @@ struct Monster{
 
 // array that contains types of monsters discoverable
 // hasn't been implemented yet
-static string monsterdict[numOfMonsters][numAttacks + 1] = {
-    {"Skeleton", "diagonal slash", "thrust", "vertical slash", "horizontal slash"},
-    {"Goblin", "Punch", "Pillage", " Rob", "Dagger"},
-    {"Ogre", "Punch", "Sword slash", "Charge", "Throw"},
-    {"Demon", "Possession", "Magic spell", "Disillusionment", "Temptation"},
-    {"Dark elf", "Dagger dash", "Claw attack", "Sword Slash", "Spear"},
-    {"Wyvern", "Fire Breath", "Lighting Breath", "Toxic Gas", "Ice Breath"}
-    {"Dryad","Dagger", "Knife", "Long Bow", "Club attack"}
-    {"Dragon", "Claw Strike", "Charge", "Fire Breath", "Roar"}
-    {"Elemental", "Water flood", "Firestorm", "Landslide", "Lightning strike"}
-    "Make Something Up"
-};
+
 
 
 int monsterAtkDmg[numOfMonsters][numAttacks] = {
