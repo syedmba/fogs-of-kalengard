@@ -96,8 +96,8 @@ static string monsterdict[numOfMonsters][numAttacks + 1] = {
     {"Demon"},
     {"Dark elf"},
     "Wyvern",
-    "Dryad",
-    {"Dragon", "Claw Strike", "Whip", "Fire Breath", "Roar"}
+    {"Dryad","Dagger", "Knife", "Long Bow", "Club attack"}
+    {"Dragon", "Claw Strike", "Charge", "Fire Breath", "Roar"}
     {"Elemental", "Water flood", "Firestorm", "Landslide", "Lightning strike"}
     "Make Something Up"
 };
