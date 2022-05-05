@@ -31,18 +31,7 @@ const int numAttacks = 4;
 void printLine();
 
 
-int monsterStats[numOfMonsters][numStats] = {
-    {100, 10, 1, 0, 0},   // skeleton HP, DEF, ATK
-    {70, 5, 2, 0, 0},     // goblin
-    {}, 
-    {}, 
-    {}, 
-    {}, 
-    {}, 
-    {10000, 200, 90, 0, 30}, 
-    {},
-    {}
-};
+
 
 struct MonsterStats{
     int HP;
