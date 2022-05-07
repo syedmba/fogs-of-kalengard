@@ -1,3 +1,5 @@
+// inventory.cpp
+
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -27,7 +29,7 @@ void Inventory(string playerInventory[inventorySize], string playerEquipment[equ
                 cout << "No items in inventory" << endl;
             }
             if (playerInventory[i].length() > 0){
-                cout << i << ". " << playerInventory[i] << endl;
+                cout << i+1 << ". " << playerInventory[i] << endl;
             }
         }
         cout << "--------------------------------" << endl;
@@ -75,7 +77,100 @@ void DeleteItem(std::string playerInventory[inventorySize]){
     cout << "Item Deleted" << endl;
     return;
 }
-void UseItem(std::string playerInventory[inventorySize]){
+
+
+
+
+
+
+void UseItem(std::string playerInventory[inventorySize], int &playerHP, int &playerATK, int&playerDEF){
+
+    // tentative format: {item, health points effect, atk effect, def effect}
+    // convert numbers to double 
+    string Items[ItemsListSize][4] = {
+    {"health potion", "10", "0", "0"}, 
+    {"sword", "0", "10", "0"}
+    };
+    
+    bool Usable[] = {1, 0};
+
+    // to find num of items in inventory
+    int itemsInInventoryRightNow = 0;
+    int usableItemsInInventoryRightNow = 0;
+    for (int i = 0; i < inventorySize; i++){
+        if (playerInventory[i] != ""){
+            itemsInInventoryRightNow++;
+        }
+    }
+
+    // important: if items in inventory  = 0 print message and return
+    if(itemsInInventoryRightNow==0){
+        cout << "Your inventory is empty." << endl;
+        return;
+    }
+
+    // print list of usable items in inventory
+    int indexInItemsList;
+    for (int j = 0; j < inventorySize; j++){
+        if (playerInventory[j] != ""){
+            for (int i = 0; i < ItemsListSize; i++){
+                if (Items[i][0] == playerInventory[j]){
+                    indexInItemsList = i;
+                    break;
+                }
+            }
+
+            if (Usable[indexInItemsList]){
+                if (usableItemsInInventoryRightNow == 0){
+                    cout << "Usable items in inventory:" << endl;
+                }
+                usableItemsInInventoryRightNow++;
+                cout << j+1 << ". " << playerInventory[j] << endl;
+            }
+        }
+    }
+
+    // if no usable items in inventory then print message and return
+    if(usableItemsInInventoryRightNow == 0){
+        cout << "There are no usable items in the inventory";
+        return;
+    }
+
+    string selectedItem;
+    int selectedItemIndex;
+    cout << "Enter the slot number of the item you wish to use:";
+    cin >> selectedItemIndex;
+
+    // do a while loop til valid input
+    while (playerInventory[selectedItemIndex] == ""){
+        cout << "No item in slot " << selectedItemIndex << ", enter a valid slot number: ";
+        cin >> selectedItemIndex;
+    }
+
+    selectedItem = playerInventory[selectedItemIndex];
+
+    for (int i = 0; i < ItemsListSize; i++){
+        if (Items[i][0] == selectedItem){
+            indexInItemsList = i;
+            break;
+        }
+    }
+
+    if (!Usable[indexInItemsList]){
+        // print message and return
+        cout << "The item you have chosen is not usable.";
+        return;
+        
+    } else {
+        // apply item effects to player's stats
+        playerHP += stoi(Items[indexInItemsList][1]);
+        playerATK += stoi(Items[indexInItemsList][2]);
+        playerDEF += stoi(Items[indexInItemsList][3]);
+
+        // remove item from inventory after it is used
+        playerInventory[selectedItemIndex] = "";
+    }
+
     cout << "Item Used" << endl;
 }
 void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]){
