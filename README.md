@@ -76,6 +76,12 @@ Used to update inventory
 
 Used to manage equipped items
 
+### File Input and Output
+
+Chapter 1 is perpetual fighting, therefore no rest is allowed
+
+The player must fight from start til death ... there is no saving progress and taking breaks
+
 ### Program Codes in Multiple Files
 
 Multiple files used to organize the code efficiently
