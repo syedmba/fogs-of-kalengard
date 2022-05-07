@@ -28,6 +28,7 @@ const int conversationLengthWOM = 7;
 const int conversationLengthFairMaiden = 4;
 const int conversationLengthVillager = 3;
 
+//conversations with NPCs
 string Drakyn[conversationLengthDrakyn] = {
     "Greetings, foreign traveler! Where go you?",
     "You seem new around these parts... Ah! You must be our honoured Hero!",
@@ -39,6 +40,7 @@ string Drakyn[conversationLengthDrakyn] = {
     "Ad fines longinquos valeamus!"
 };
 
+
 string UnknownChild[conversationLengthChild] = {
     "ahhhhhhh, help me~",
     "There is a big monster up ahead",
@@ -46,6 +48,7 @@ string UnknownChild[conversationLengthChild] = {
     "It is very scary",
     "Can you help me?"
 };
+
 
 string WiseOldMan[conversationLengthWOM] = {
     "Hello there",
@@ -64,6 +67,7 @@ string FairMaiden[conversationLengthFairMaiden] = {
     "May you have success on your journey",
     "Farewell, till we meet again."
 };
+
 
 string Villager[conversationLengthVillager] = {
     "You are in uncharted territory",
