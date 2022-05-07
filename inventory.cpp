@@ -55,7 +55,7 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
         cout << "e. Close Inventory" << endl;
 
         cout << "--------------------------------" << endl;
-        cout << "Choose an action" << endl;
+        cout << "Choose an inventory action: ";
 
         string response;
         cin >> response;
@@ -63,7 +63,7 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
         while (response != "1" && response != "2" && response != "e"){
             cout << "Invalid action" << endl;
             cout << "--------------------------------" << endl;
-            cout << "Choose an action" << endl;
+            cout << "Choose an inventory action: ";
             cin >> response;
         }
 
@@ -139,16 +139,16 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
 
     string selectedItem;
     int selectedItemIndex;
-    cout << "Enter the slot number of the item you wish to use:";
+    cout << "Enter the slot number of the item you wish to use: ";
     cin >> selectedItemIndex;
 
     // do a while loop til valid input
-    while (playerInventory[selectedItemIndex] == ""){
+    while (playerInventory[selectedItemIndex-1] == ""){
         cout << "No item in slot " << selectedItemIndex << ", enter a valid slot number: ";
         cin >> selectedItemIndex;
     }
 
-    selectedItem = playerInventory[selectedItemIndex];
+    selectedItem = playerInventory[selectedItemIndex-1];
 
     for (int i = 0; i < ItemsListSize; i++){
         if (Items[i][0] == selectedItem){
@@ -159,7 +159,7 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
 
     if (!Usable[indexInItemsList]){
         // print message and return
-        cout << "The item you have chosen is not usable.";
+        cout << "The item you have chosen is not usable." << endl;
         return;
         
     } else {
@@ -169,7 +169,7 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
         playerDEF += stoi(Items[indexInItemsList][3]);
 
         // remove item from inventory after it is used
-        playerInventory[selectedItemIndex] = "";
+        playerInventory[selectedItemIndex-1] = "";
     }
 
     cout << "Item Used" << endl;
