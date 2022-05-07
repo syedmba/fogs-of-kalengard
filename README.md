@@ -78,9 +78,9 @@ Used to manage equipped items
 
 ### File Input and Output
 
-Chapter 1 is perpetual fighting, therefore no rest is allowed
+Files are used to load and save player Stats, Inventory, and Equipment
 
-The player must fight from start til death ... there is no saving progress and taking breaks
+Since fighting is perpetual a new terrain is generated upon loading of game
 
 ### Program Codes in Multiple Files
 
