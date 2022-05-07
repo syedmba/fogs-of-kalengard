@@ -15,8 +15,15 @@ void initiateDialogue(string npcName);
 const int textBoxWidth = 100;
 const int maxMessageLines = 7;
 const int dummyTextInLine = 18;
-const int conversationLengthDrakyn = 8;
+const int conversationLength[numberOfNPCs] = {8, 0, 0, 0, 0};
 
+const int numberOfNPCs = 5;
+
+static int conversationNumber[numberOfNPCs] = {0, 0, 0, 0, 0};
+
+// int * conversationLengthPtr = & conversationLength[0];
+const int conversationLengthDrakyn = 8;
+const int conversationLengthChild = 3;
 
 string Drakyn[conversationLengthDrakyn] = {
     "Greetings, foreign traveler! Where go you?",
@@ -29,10 +36,14 @@ string Drakyn[conversationLengthDrakyn] = {
     "Ad fines longinquos valeamus!"
 };
 
+string UnknownChild[conversationLengthChild] = {
+    "Help me big bro I'm stuck"
+};
+
 
 // function to carry out the main dialogue
 // uses printMessage()
-void initiateDialogue(string npcName){
+void initiateDialogue(string npcName, int conversationNumber){
     for (int i = 0; i < conversationLengthDrakyn; i++){
         printMessage(npcName, Drakyn[i]);
         getchar();

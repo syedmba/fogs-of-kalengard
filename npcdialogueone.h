@@ -5,8 +5,8 @@
 
 #include <string>
 
-void initiateDialogue(std::string npcName, std::string message);
+void printMessage(std::string npcName, std::string message);
 void printMessageLine();
-void initiateDialogue(std::string npcName);
+void initiateDialogue(std::string npcName, int conversationNumber);
 
 #endif
