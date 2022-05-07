@@ -314,6 +314,8 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
     }
 
     printLine();
+
+    getchar();
     
 }
 
