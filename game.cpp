@@ -5,6 +5,7 @@
 #include <string>
 // #include <ncurses.h>
 #include <stdlib.h>
+#include <fstream>
 // #include <unistd.h>
 
 #include "walk.h"
@@ -25,9 +26,6 @@
 using namespace std;
 
 
-struct Player{
-    
-};
 
 
 // variable declarations
@@ -35,30 +33,14 @@ struct Player{
 const int numRowsInArtI = 10;
 const int numColsInArtI = 410;
 
-// const int maxLengthOfSkillName = 20;
-// const int totalPlayerSkills = 15;
-
-// const int mapHeight = 20;
-// const int mapLength = 100;
-// const int numMonsters = 19;
-
-// int playerHP = 100;
-// int playerDEF = 10;
-
-
-
-// function prototypes
-
-// void PrintTerrain(char terrain[mapHeight][mapLength]);
-// void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]);
+// unused function prototype
 void createPlanetAndStars(char array[]);
+inline bool file_exists(const string &name);
 
-
-// char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
-//     "blunt strike",
-//     "sword slash",
-//     "shield"
-// };
+inline bool file_exists(const string &name) {
+    ifstream f(name.c_str());
+    return f.good();
+}
 
 
 // unused
@@ -98,48 +80,71 @@ void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
 }
 
 
-// void printTerrain(char terrain[mapHeight][mapLength]){
-
-//     for (int i = 0; i < mapHeight; i++){
-//         for (int j=0; j < mapLength; j++){
-//             if (terrain[i][j] == 'b'){
-//                 cout << BLOCK;
-//             }
-//             else if(terrain[i][j] == 'p'){
-//                 cout << PLAYER;
-//             }
-//             else if (terrain[i][j] == 's'){
-//                 cout << " ";
-//             }
-//             else if (terrain[i][j] == 'm'){
-//                 cout << "?";
-//             }
-//         }
-//         cout << endl;
-//     }
-    
-//     for (int times = 0; times < 1; times++){
-//         for (int i = 0; i < mapLength; i++){
-//             cout << "-";
-//         }
-//         cout << endl;
-//     }
-    
-
-// }
-
-
-
 
 // the main() function of the game
 // this function contains the main framework of the game
 int main(){
+
+    // player stats
+    double playerHP = 100.0;
+    double playerDEF = 10.0;
+    double playerATK = 10.0;
 
     cout << "----------------------------------------------------------------------------------------------------" << endl;
     cout << "                               F O G S    O F    K A L E N G A R D" << endl;
     cout << "                       M I A S M A    O F    T H E    D E M O N    K I N G" << endl;
     cout << "                C H A P T E R    1    :    T H E    E T E R N A L    B A T T L E S" << endl;
     cout << "----------------------------------------------------------------------------------------------------" << endl;
+
+    cout << "Welcome, warrior! Please tell your name: ";
+    string playerName;
+    cin >> playerName;
+
+    string filename = playerName + ".txt";
+    string inventory[inventorySize] = {};
+    string equipment[equipmentLimit] = {};
+    if (file_exists(filename)){
+        // load game data
+        ifstream fin(filename);
+        if (fin.fail()){
+            cout << "Error in opening file!" << endl;
+            exit(1);
+        }
+
+        string line;
+        getline(fin, line);
+        int playerHP = stoi(line);
+        getline(fin, line);
+        int playerATK = stoi(line);
+        getline(fin, line);
+        int playerDEF = stoi(line);
+        bool equipmentReached = false;
+
+        
+        int inventoryIndex = 0;
+        int equipmentIndex = 0;
+        while (getline(fin, line)){
+            if (line == "Equipment"){
+                equipmentReached = true;
+            } else if (equipmentReached){
+                equipment[equipmentIndex] = line;
+                equipmentIndex++;
+            } else {
+                inventory[inventoryIndex] = line;
+                inventoryIndex++;
+            }
+        }
+
+        fin.close();
+
+    } else {
+        ofstream fout(filename);
+        if (fout.fail()){
+            cout << "Error in opening file!" << endl;
+            exit(1);
+        }
+
+    }
 
     getchar();
 
@@ -184,7 +189,7 @@ int main(){
     static bool walkOn = true; // static ??
 
     while (walkOn){
-        walk(terrain, terrainHeight, monsterPositions, walkOn);
+        walk(terrain, terrainHeight, monsterPositions, walkOn, playerHP, playerATK, playerDEF, inventory, equipment);
     }
 
     // endwin();
