@@ -76,11 +76,15 @@ Used to update inventory
 
 Used to manage equipped items
 
+Constantly update terrain (monsters and player positions etc.)
+
 ### File Input and Output
 
 Files are used to load and save player Stats, Inventory, and Equipment
 
 Since fighting is perpetual a new terrain is generated upon loading of game
+
+As a penalty for resting from battle, all skill levels are reset to 1
 
 ### Program Codes in Multiple Files
 
