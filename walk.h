@@ -7,6 +7,7 @@
 #include "battle.h"
 #include "printterrain.h"
 #include "inventory.h"
+#include "nextarea.h"
 
 // number of monsters on the terrain
 const int numMonsters = 19;
