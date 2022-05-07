@@ -11,6 +11,7 @@
 #include "battle.h"
 #include "printterrain.h"
 #include "inventory.h"
+#include "npcdialogueone.h"
 
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
@@ -132,6 +133,16 @@ void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
 // the main() function of the game
 // this function contains the main framework of the game
 int main(){
+
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+    cout << "                               F O G S    O F    K A L E N G A R D" << endl;
+    cout << "                       M I A S M A    O F    T H E    D E M O N    K I N G" << endl;
+    cout << "                C H A P T E R    1    :    T H E    E T E R N A L    B A T T L E S" << endl;
+    cout << "----------------------------------------------------------------------------------------------------" << endl;
+
+    getchar();
+
+    initiateDialogue("Knight Commander Drakyn", 0);
 
     // initscr();
 
