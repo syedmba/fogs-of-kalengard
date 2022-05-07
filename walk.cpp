@@ -38,6 +38,18 @@ char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
 };
 
 
+void giveRandomItem(string playerInventory[inventorySize]){
+    srand(time(0));
+    int itemIndex = rand() % ItemsListSize;
+    for (int i = 0; i < inventorySize; i++){
+        if (playerInventory[i] != ""){
+            playerInventory[i] = Items[i];
+            cout << "The defeated enemy dropped " << playerInventory[i] << ". The item has been added to slot " << i+1 << " of your inventory." << endl;
+        }
+    }
+}
+
+
 // this function allows the player to move across the terrain of any area in the game
 // the area is passed as a 2d array called terrain with height and length stored as const values
 // the function also accepts a 1D array that contains the terrain altitude at each column
@@ -173,6 +185,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         battle(playerActions, playerDEF, playerHP, enemyDefeated);
 
         if (enemyDefeated){
+            giveRandomItem(playerInventory);
             terrain[(mapHeight - 1) - (terrainHeight[nextMonsterPosition] + 1)][nextMonsterPosition] = 's';
         }
 
