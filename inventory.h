@@ -8,7 +8,7 @@ const int ItemsListSize = 100;
 
 // tentative format: {item, health points effect, atk effect, def effect}
 // convert numbers to double 
-std::string Items[ItemsListSize][4] = {
+const std::string Items[ItemsListSize][4] = {
 {"Water", "5", "0", "0"},
 {"Pumpkin seeds", "5", "0", "0"},
 {"Impure Healing Potion", "10", "0", "0"}, 
@@ -16,8 +16,7 @@ std::string Items[ItemsListSize][4] = {
 {"Beans", "10", "0", "0"},
 {"Soup", "15", "0", "0"},
 {"Touch of Rejuvenation", "40", "0", "0"},
-{"A Second Chance", "70", "0", "0"}
-
+{"A Second Chance", "70", "0", "0"},
 {"Queen Zelda's Healing Drought", "1000", "20", "100"},
 {"Butterfly knife", "1", "5", "0"},
 {"Rusted Shortsword", "5", "10", "0"},
@@ -49,13 +48,13 @@ std::string Items[ItemsListSize][4] = {
 
 };
 
-bool Usable[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+const bool Usable[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 void SwapItems(std::string playerInventory[inventorySize]);
 void DeleteItem(std::string playerInventory[inventorySize]);
-void UseItem(std::string playerInventory[inventorySize], int &playerHP, int &playerATK, int&playerDEF);
+void UseItem(std::string playerInventory[inventorySize], double &playerHP, double &playerATK, double &playerDEF);
 void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]);
-void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], int &playerHP, int &playerATK, int &playerDEF);
+void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double &playerHP, double &playerATK, double &playerDEF);
 
 #endif
