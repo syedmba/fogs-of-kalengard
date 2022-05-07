@@ -28,6 +28,7 @@ const int numMonsters = 20;
 // player stats
 int playerHP = 100;
 int playerDEF = 10;
+int playerATK = 10;
 
 // array that contains the skills a player currently has
 char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
@@ -120,7 +121,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
                 steps = -1;
             }
         } else if (enteredValue == 'e'){
-            Inventory(playerInventory, playerEquipment);
+            Inventory(playerInventory, playerEquipment, playerHP, playerATK, playerDEF);
             inventoryOpened = true;
         } else if (enteredValue == 'm'){
             // Map();
