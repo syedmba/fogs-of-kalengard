@@ -174,7 +174,7 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
 
     cout << "Item Used" << endl;
 }
-void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]){
+void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], int &playerHP, int &playerATK, int &playerDEF){
     int equipmentCount = 0;
     cout << "Current equipment: " << endl;
     for (int i = 0; i < equipmentLimit; i++){
@@ -220,11 +220,15 @@ void EquipItem(std::string playerInventory[inventorySize], std::string playerEqu
                         cout << "Usable item cannot be equipped" << endl;
                         return;
                     } else {
-                        // fix slot
+                        // equip item
                         for (int j = 0; j < equipmentLimit; j++){
                             if (playerEquipment[j] == ""){
                                 playerEquipment[j] = playerInventory[itemSlot - 1];
                                 playerInventory[itemSlot - 1] = "";
+                                playerHP += stoi(Items[i][1]);
+                                playerATK += stoi(Items[i][2]);
+                                playerDEF += stoi(Items[i][3]);
+
                                 return;
                             }
                         }
@@ -245,6 +249,16 @@ void EquipItem(std::string playerInventory[inventorySize], std::string playerEqu
                 if (playerInventory[j] == ""){
                     playerInventory[j] = playerEquipment[equipmentSlot-1];
                     playerEquipment[equipmentSlot-1] = "";
+
+                    for (int i = 0; i < ItemsListSize; i++){
+                        if (Items[i][0] == playerInventory[j]){
+                            playerHP -= stoi(Items[i][1]);
+                            playerATK -= stoi(Items[i][2]);
+                            playerDEF -= stoi(Items[i][3]);
+                            break;
+                        }
+                    }
+                    
                     return;
                 }
             }
