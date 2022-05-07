@@ -257,7 +257,7 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
                 Inventory(playerInventory, playerEquipment, playerHP, playerATK, playerDEF);
             }
             printLine();
-            cout << "Choose your response (e for inventory): " << endl;
+            cout << "Choose your battle response (e for inventory): " << endl;
 
             cin >> response;
         }
