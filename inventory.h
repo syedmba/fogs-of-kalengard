@@ -54,7 +54,7 @@ const bool Usable[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 void SwapItems(std::string playerInventory[inventorySize]);
 void DeleteItem(std::string playerInventory[inventorySize]);
 void UseItem(std::string playerInventory[inventorySize], double &playerHP, double &playerATK, double &playerDEF);
-void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]);
+void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double &playerHP, double &playerATK, double &playerDEF);
 void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double &playerHP, double &playerATK, double &playerDEF);
 
 #endif
