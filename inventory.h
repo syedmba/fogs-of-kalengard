@@ -8,7 +8,7 @@ const int ItemsListSize = 100;
 
 // tentative format: {item, health points effect, atk effect, def effect}
 // convert numbers to double 
-string Items[ItemsListSize][4] = {
+std::string Items[ItemsListSize][4] = {
 {"Impure Health Potion", "10", "0", "0"}, 
 {"Queen Zelda's Healing Drought", "1000", "20", "100"},
 {"Rusted Shortsword", "0", "10", "0"},
