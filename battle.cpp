@@ -95,7 +95,7 @@ static string monsterdict[numOfMonsters][numAttacks + 1] = {
     {"Goblin", "Punch", "Pillage", "Sneak Attack", "Dagger"},
     {"Ogre", "Punch", "Club Smash", "Charge", "Throw"},
     {"Demon", "Possession", "Magic Rain", "Disillusionment", "Temptation"},
-    {"Dark elf", "Dagger dash", "Claw attack", "Sword Slash", "Spear"},
+    {"Dark elf", "Dagger dash", "Rending Arrow", "Sword Slash", "Spear"},
     {"Wyvern", "Fire Breath", "Lighting Breath", "Toxic Gas", "Ice Breath"},
     {"Dryad", "Dagger Strike", "Wind Burst", "Long Bow", "Binding Attack"},
     {"Dragon", "Fire Rain", "Aura Burst", "Fire Breath", "Roar"},
@@ -105,8 +105,16 @@ static string monsterdict[numOfMonsters][numAttacks + 1] = {
 
 
 int monsterAtkDmg[numOfMonsters][numAttacks] = {
-    {20, 40, 20, 25},
-    {}
+    {20, 40, 20, 25},       // skeleton
+    {15, 30, 20, 50},       // goblin
+    {33, 70, 80, 20},       // ogre
+    {60, 100, 50, 40},      // demon
+    {50, 40, 80, 90},       // dark elf
+    {290, 333, 200, 275},   // wyvern
+    {30, 44, 40, 20},       // dryad
+    {500, 300, 333, 200},   // dragon
+    {100, 150, 90, 166},    // elemental
+    {50, 20, 10, 70}        // wolf
 };
 
 // string monsterAttacks[numOfMonsters] = {
@@ -232,9 +240,9 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
             crit_factor = 2;
         }
         
-        thisDEF = playerDEF + playerActionStats[stoi(response)-1][stoi(playerActions[stoi(response)-1][0])][2];
-        thisATK = playerATK + crit_factor * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])][1];
-        playerHP += enemyHP * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])][0];
+        thisDEF = playerDEF + playerActionStats[stoi(response)-1][stoi(playerActions[stoi(response)-1][0])-1][2];
+        thisATK = playerATK + crit_factor * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])-1][1];
+        playerHP += enemyHP * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])-1][0];
 
         double damageToPlayer = thisMonster.MonsterAttackDamages[this_monster_atk] + thisMonster.stats.ATK - thisDEF;
         double damageToEnemy = thisATK - thisMonster.stats.DEF;
