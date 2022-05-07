@@ -183,6 +183,9 @@ void EquipItem(std::string playerInventory[inventorySize], std::string playerEqu
             cout << "Equipment Slot " << i+1 << ": " << playerEquipment[i] << endl;
         }
     }
+    if (equipmentCount == 0){
+        cout << "No items equipped ..." << endl;
+    }
 
     
     
