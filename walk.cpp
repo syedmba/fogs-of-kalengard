@@ -55,7 +55,7 @@ double playerActionStats[totalPlayerSkills][6][3] = {
 
 void giveRandomItem(string playerInventory[inventorySize]){
     srand(time(0));
-    int itemIndex = rand() % 30;
+    int itemIndex = rand() % 35;
     for (int i = 0; i < inventorySize; i++){
         if (playerInventory[i] == ""){
             playerInventory[i] = Items[itemIndex][0];
