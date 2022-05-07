@@ -26,6 +26,7 @@ const int conversationLengthDrakyn = 8;
 const int conversationLengthChild = 5;
 const int conversationLengthWOM = 7;
 const int conversationLengthFairMaiden = 4;
+const int conversationLengthVillager = 3;
 
 string Drakyn[conversationLengthDrakyn] = {
     "Greetings, foreign traveler! Where go you?",
@@ -62,7 +63,13 @@ string FairMaiden[conversationLengthFairMaiden] = {
     "Your chilvalry is outstanding",
     "May you have success on your journey",
     "Farewell, till we meet again."
-}
+};
+
+string Villager[conversationLengthVillager] = {
+    "You are in uncharted territory",
+    "The monsters have ravaged this world for eternities",
+    "How will you write history?"
+};
 
 
 // function to carry out the main dialogue
