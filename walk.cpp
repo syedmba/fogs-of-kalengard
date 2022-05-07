@@ -26,18 +26,33 @@ string playerEquipment[equipmentLimit] = {};
 const int numMonsters = 20;
 
 // player stats
-int playerHP = 100;
-int playerDEF = 10;
-int playerATK = 10;
+double playerHP = 100.0;
+double playerDEF = 10.0;
+double playerATK = 10.0;
 
 // array that contains the skills a player currently has
 string playerActions[totalPlayerSkills][6] = {
-    {"0", "Punch", "Blunt Strike", "Concuss", "Ultimate Smash", "Downfall of Judgement"},
-    {"0", "Sword Slash", "Two-Point Strike", "Flurry of Blades", "Titan's Crisscross", "Atomic Strike"},
-    {"0", "Protect", "Shield", "Sturdy Tank", "Unmoving Fortress", "Might of the Untouchable"},
-    {"0", "Kick", "Roundhouse Kick", "Triple Kick", "Devil's Anomalous Barrage", "Phaser Kick"},
-    {"0", "Rock Throw", "Flying Dagger", "Arrow Rain", "Twin Shuriken Dance", "Eclipsing Storm"}
+    {"1", "Punch", "Blunt Strike", "Concuss", "Ultimate Smash", "Downfall of Judgement"},
+    {"1", "Sword Slash", "Two-Point Strike", "Flurry of Blades", "Titan's Crisscross", "Atomic Strike"},
+    {"1", "Protect", "Shield", "Sturdy Tank", "Unmoving Fortress", "Might of the Untouchable"},
+    {"1", "Kick", "Roundhouse Kick", "Triple Kick", "Devil's Anomalous Barrage", "Phaser Kick"},
+    {"1", "Rock Throw", "Flying Dagger", "Arrow Rain", "Twin Shuriken Dance", "Eclipsing Storm"}
 };
+
+// stored as {LifeSteal, ATK, DEF}
+double playerActionStats[totalPlayerSkills][6][3] = {
+        {{0, 10, 0}, {0, 30, 0}, {0.001, 100, 10}, {0.005, 300, 50}, {0.01, 430, 60}},
+        {{0, 30, 0}, {0, 90, 0}, {0.001, 250, 5}, {0.008, 460, 6}, {0.03, 530, 9}},
+        {{0.001, 0, 30}, {0.005, 0, 60}, {0.01, 0, 150}, {0.04, 0, 300}, {0.06, 0, 400}},
+        {{0, 15, 0}, {0, 40, 0}, {0, 120, 0}, {0, 370, 0}, {0.005, 470, 20}},
+        {{0, 20, 0}, {0, 50, 0}, {0.002, 150, 0}, {0.009, 400, 0}, {0.01, 500, 0}}
+};
+
+// int playerActionDEF[totalPlayerSkills] = {
+//     0,
+//     0,
+//     30
+// };
 
 
 void giveRandomItem(string playerInventory[inventorySize]){
@@ -185,7 +200,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
     if (battleInitiated){
 
         bool enemyDefeated = false;
-        battle(playerActions, playerDEF, playerHP, enemyDefeated);
+        battle(playerActions, playerATK, playerDEF, playerHP, enemyDefeated, playerInventory, playerEquipment, playerActionStats);
 
         if (enemyDefeated){
             giveRandomItem(playerInventory);
