@@ -26,7 +26,7 @@ Player & Monster Health Points
 
 Player DEF and ATK Stats
 
-Inventory
+Inventory and Equipped Items
 
 ### Story Progression
 
