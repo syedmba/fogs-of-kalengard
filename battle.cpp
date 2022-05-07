@@ -203,6 +203,7 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
         int crit_factor = 1;
 
         cout << "<< " << monsterName << " >> is about to do a " << thisMonster.MonsterAttacks[this_monster_atk] << "..." << endl;
+        cout << endl;
         
         int this_message = rand() % totalBattleMessages; 
         cout << battleMessages[this_message] << endl;
