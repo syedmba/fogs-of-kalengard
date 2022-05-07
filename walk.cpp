@@ -31,12 +31,12 @@ double playerDEF = 10.0;
 double playerATK = 10.0;
 
 // array that contains the skills a player currently has
-string playerActions[totalPlayerSkills][6] = {
-    {"1", "Punch", "Blunt Strike", "Concuss", "Ultimate Smash", "Downfall of Judgement"},
-    {"1", "Sword Slash", "Two-Point Strike", "Flurry of Blades", "Titan's Crisscross", "Atomic Strike"},
-    {"1", "Protect", "Shield", "Sturdy Tank", "Unmoving Fortress", "Might of the Untouchable"},
-    {"1", "Kick", "Roundhouse Kick", "Triple Kick", "Devil's Anomalous Barrage", "Phaser Kick"},
-    {"1", "Rock Throw", "Flying Dagger", "Arrow Rain", "Twin Shuriken Dance", "Eclipsing Storm"}
+string playerActions[totalPlayerSkills][7] = {
+    {"1", "Punch", "Blunt Strike", "Concuss", "Ultimate Smash", "Downfall of Judgement", "0"},
+    {"1", "Sword Slash", "Two-Point Strike", "Flurry of Blades", "Titan's Crisscross", "Atomic Strike", "0"},
+    {"1", "Protect", "Shield", "Sturdy Tank", "Unmoving Fortress", "Might of the Untouchable", "0"},
+    {"1", "Kick", "Roundhouse Kick", "Triple Kick", "Devil's Anomalous Barrage", "Phaser Kick", "0"},
+    {"1", "Rock Throw", "Flying Dagger", "Arrow Rain", "Twin Shuriken Dance", "Eclipsing Storm", "0"}
 };
 
 // stored as {LifeSteal, ATK, DEF}
