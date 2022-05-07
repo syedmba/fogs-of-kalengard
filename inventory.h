@@ -44,8 +44,6 @@ const std::string Items[ItemsListSize][4] = {
 {"Boots of the Ruined King", "100", "100", "50"},
 {"Chestplate of the Ruined King", "500", "0", "1000"},
 {"Excalibur", "400", "400", "0"},
-{""}
-
 };
 
 const bool Usable[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
