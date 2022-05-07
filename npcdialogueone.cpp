@@ -37,8 +37,13 @@ string Drakyn[conversationLengthDrakyn] = {
 };
 
 string UnknownChild[conversationLengthChild] = {
-    "Help me big bro I'm stuck"
+    "ahhhhhhh, help me~",
+    "There is a big monster up ahead",
+    "I can't outrun it",
+    "It is very scary",
+    "Can you help me?"
 };
+
 
 
 // function to carry out the main dialogue
