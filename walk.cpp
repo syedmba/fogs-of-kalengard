@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string>
 #include <unistd.h>
+#include <fstream>
 // #include <ncurses.h>
 
 
@@ -24,10 +25,6 @@ string playerInventory[inventorySize] = {};
 string playerEquipment[equipmentLimit] = {};
 
 
-// player stats
-double playerHP = 100.0;
-double playerDEF = 10.0;
-double playerATK = 10.0;
 
 // array that contains the skills a player currently has
 string playerActions[totalPlayerSkills][7] = {
@@ -73,11 +70,20 @@ void giveRandomItem(string playerInventory[inventorySize]){
 // this function takes input (arrow keys?) from the player
 // then moves the player correspondingly
 // and then updates the player position in the 2d array
-void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[], bool &walkOn){
+void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[], bool &walkOn, double &playerHP, double &playerATK, double &playerDEF, string inventory[inventorySize], string equipment[equipmentLimit]){
 
     if (walkOn == false){
         return;
     }
+
+    for (int i = 0; i < inventorySize; i++){
+        playerInventory[i] = inventory[i];
+    }
+    
+    for (int i = 0; i < equipmentLimit; i++){
+        playerEquipment[i] = equipment[i];
+    }
+    
 
     // usleep(5);
     // initscr();
@@ -137,7 +143,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
     while (steps == 0){
         bool inventoryOpened = false;
         // cout << "Enter the number of steps you want to travel (negative to go back): ";
-        cout << "Press an arrow key (<- or ->) and then press ENTER to move (e for INVENTORY): " << endl;
+        cout << "Press an arrow key (<- or ->) and then press ENTER to move (e for INVENTORY / q to QUIT): " << endl;
         
         enteredValue = getchar();
         if (enteredValue == '\033') { // if the first value is esc
@@ -155,8 +161,35 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         } else if (enteredValue == 'e'){
             Inventory(playerInventory, playerEquipment, playerHP, playerATK, playerDEF);
             inventoryOpened = true;
-        } else if (enteredValue == 'm'){
-            // Map();
+        } else if (enteredValue == 'q'){
+            // save game
+            cout << "Enter name for save files: ";
+            string Name;
+            cin >> Name;
+            string fname = Name + ".txt";
+            ofstream fout(fname);
+            if (fout.fail()){
+                cout << "Error in opening file!" << endl;
+                exit(1);
+            } else {
+                fout << playerHP << endl;
+                fout << playerATK << endl;
+                fout << playerDEF << endl;
+                for (int i = 0; i < inventorySize; i++){
+                    if (playerInventory[i] != ""){
+                        fout << playerInventory[i] << endl;
+                    }
+                }
+                fout << "Equipment" << endl;
+                for (int i = 0; i < equipmentLimit; i++){
+                    if (playerEquipment[i] != ""){
+                        fout << playerEquipment[i] << endl;
+                    }
+                }
+                fout.close();
+            }
+            // quit
+            exit(1);
         } else {
             cout << "Wrong input" << endl;
             steps = 0;
@@ -246,7 +279,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         walkOn = true;
 
         while (walkOn){
-            walk(terrain, terrainHeight, monsterPositions, walkOn);
+            walk(terrain, terrainHeight, monsterPositions, walkOn, playerHP, playerATK, playerDEF, playerInventory, playerEquipment);
         }
     }
 
