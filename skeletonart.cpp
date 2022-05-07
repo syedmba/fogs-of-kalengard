@@ -35,3 +35,114 @@ void printSkeleton(){
     }
 }
 
+void printDragon(){
+    cout << "                 __                  __ " << endl;
+    cout << "            ( _)                ( _)    " << endl;
+    cout << "           / / \\              / /\\_\\_  " << endl;
+    cout << "          / /   \\            / / | \\ \\ " << endl;
+    cout << "         / /     \\          / /  |\\ \\ \\ " << endl;
+    cout << "        /  /   ,  \\ ,       / /   /|  \\ \\ " << endl;
+    cout << "       /  /    |\\_ /|      / /   / \\   \\_\\ " << endl;
+    cout << "      /  /  |\\/ _ '_| \\   / /   /   \\    \\ " << endl;
+    cout << "     |  /   |/  0 \0\\    / |    |    \\    \\ " << endl;
+    cout << "     |    |\\|      \\_\\_ /  /    |     \\    \\ " << endl;
+    cout << "     |  | |/    \\.\\ o\\o)  /      \\     |    \\ " << endl;
+    cout << "     \\    |     /\\`v-v  /        |    |     \\ " << endl;
+    cout << "      | \\/    /_| \\_|  /         |    | \\    \\ " << endl;
+    cout << "      | |    /__/_ `-` /   _____  |    |  \\    \\ " << endl;
+    cout << "      \\|    [__]  \\_/  |_________  \\   |   \\    () " << endl;
+    cout << "       /    [___] (    \\         \\  |\\ |   |   // " << endl;
+    cout << "      |    [___]                  |\\| \\|   /  |/ " << endl;
+    cout << "     /|    [____]                  \\  |/\\ / / || " << endl;
+    cout << "       \\   [____ /     ) _\\      \\  \\    \\| | || " << endl;
+    cout << "     \\  \\  [_____|    / /     __/    \\   / / // " << endl;
+    cout << "     |   \\ [_____/   / /        \\    |   \\/ // " << endl;
+    cout << "     |   /  '----|   /=\\____   _/    |   / // " << endl;
+    cout << "  __ /  /        |  /   ___/  _/\\    \\  | || " << endl;
+    cout << " (/-(/-\\)       /   \\  (/\\/\\)/  |    /  | / " << endl;
+    cout << "               (/\\/\\)           /   /   // " << endl;
+    cout << "                      _________/   /    / " << endl;
+    cout << "                     \\____________/    ( " << endl;
+
+}
+
+void printDemon(){
+    cout << "     (_(  " << endl;
+    cout << "    ('')  " << endl;
+    cout << "  _  \"\\ )>,_     .-->   \\ " << endl;
+    cout << "  _>--w/((_ >,_.'    " << endl;
+    cout << "         ///   " << endl;
+    cout << "         \"`\"     \\ " << endl;
+    }
+
+void printGoblin(){
+    cout << "             ,      ,  " << endl;    
+    cout << "           /(.-""-.)\\  " << endl;
+    cout << "       |\\  \\/      \\/  /|  " << endl;
+    cout << "       | \\ / =.  .= \\ / |  " << endl;
+    cout << "       \\( \\   o\\/o   / )/  " << endl;
+    cout << "        \\_, '-/  \\-' ,_/   " << endl;
+    cout << "          /   \\__/   \\ " << endl;
+    cout << "          \\,___/\\___,/ " << endl;
+    cout << "        ___\\ \\|uu|/ /___   " << endl;
+    cout << "      /`    \\ .--. /    `\\ " << endl;
+    cout << "  jgs/       '----'       \\    " << endl;
+
+}
+
+void printOgre(){
+    cout << "   . +.  |  * . ' " << endl;
+    cout << "  .* \\\\_/|\\_// +  " << endl;
+    cout << " ___/(o)|(o)\\___   " << endl;
+    cout << " ####\"\"\"\"\"\"\"####   " << endl;
+
+}
+
+void printWolf(){
+    cout << "                     . " << endl;
+    cout << "                    / V\\   " << endl;
+    cout << "                  / `  /   " << endl;
+    cout << "                 <<   |    " << endl;
+    cout << "                 /    |    " << endl;
+    cout << "               /      |    " << endl;
+    cout << "             /        |    " << endl;
+    cout << "           /    \\  \\ /  " << endl;
+    cout << "          (      ) | | " << endl;
+    cout << "  ________|   _/_  | | " << endl;
+    cout << "<__________\\______)\\__)    " << endl;
+
+}
+
+void printDarkElf(){
+    cout << "*<|:-(" <<endl;
+}
+
+void printElemental(){
+    cout << "               (  .      )   "<< endl;
+    cout << "           )           (              )    "<< endl;
+    cout << "                 .  '   .   '  .  '  . "<< endl;
+    cout << "        (    , )       (.   )  (   ',    ) "<< endl;
+    cout << "         .' ) ( . )    ,  ( ,     )   ( .  "<< endl;
+    cout << "      ). , ( .   (  ) ( , ')  .' (  ,    ) "<< endl;
+    cout << "     (_,) . ), ) _) _,')  (, ) '. )  ,. (' ) "<< endl;
+    cout << "    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ "<< endl;
+
+
+}
+
+void printWyvern(){
+    cout << "          .    "<< endl; 
+    cout << "     .>   )\\;`a__    "<< endl;
+    cout << "    (  _ _)/ /-.\" ~~    "<< endl;
+    cout << "     `( )_ )/    "<< endl;
+    cout << "      <_  <_    "<< endl;
+}
+
+void printDryad(){
+cout << "       |}.'}    "<< endl;
+cout << "    \\()/%(    "<< endl;
+cout << "     _>\\_{    "<< endl;
+cout << "      /|    "<< endl;
+cout << "      \\    "<< endl;
+
+}
