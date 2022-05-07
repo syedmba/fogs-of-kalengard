@@ -153,6 +153,8 @@ int main(){
         cout << "Save files do not exist... Press Enter to begin new game" << endl;
         getchar();
 
+        getchar();
+
         initiateDialogue("Knight Commander Drakyn", 0);
     }
 
