@@ -224,6 +224,17 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
 
 
     if (terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[0]] + 1)][monsterPositions[0]] != 'm' && terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[numMonsters-1]] + 1)][monsterPositions[numMonsters-1]] != 'm'){
+        
+        for (int i = 0; i < mapHeight; i++){
+            for (int j = 0; j < mapLength; j++){
+                terrain[i][j] = 's';
+            }
+        }
+        for (int i = 0; i < mapLength; i++){
+            terrainHeight[i] = 0;
+        }
+        
+        int monsterPositions[numMonsters] = {};
 
         generateTerrain(terrain, terrainHeight);
         generateMonsters(terrain, terrainHeight, monsterPositions);
