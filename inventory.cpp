@@ -42,7 +42,7 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
                 }
             }
             if (playerInventory[i].length() > 0){
-                cout << i+1 << ". " << playerInventory[i] << " HP Effect:" << effectHP << " ATK Effect:" << effectATK << " DEF Effect:" << effectDEF << " Type: " << type << endl;
+                cout << i+1 << ". " << playerInventory[i] << " | HP Effect:" << effectHP << " | ATK Effect:" << effectATK << " | DEF Effect:" << effectDEF << " | Type: " << type << " | "<< endl;
             }
         }
         cout << "--------------------------------" << endl;
@@ -180,7 +180,7 @@ void EquipItem(std::string playerInventory[inventorySize], std::string playerEqu
     for (int i = 0; i < equipmentLimit; i++){
         if (playerEquipment[i] != ""){
             equipmentCount += 1;
-            cout << "Equipment Slot " << i << ": " << playerEquipment[i] << endl;
+            cout << "Equipment Slot " << i+1 << ": " << playerEquipment[i] << endl;
         }
     }
 
@@ -237,14 +237,14 @@ void EquipItem(std::string playerInventory[inventorySize], std::string playerEqu
         int equipmentSlot;
         cout << "Enter equipment slot of item you wish to unequip: ";
         cin >> equipmentSlot;
-        if (playerEquipment[equipmentSlot] == ""){
+        if (playerEquipment[equipmentSlot-1] == ""){
             cout << "No equipment in this slot" << endl;
             return;
         } else {
             for (int j = 0; j < inventorySize; j++){
                 if (playerInventory[j] == ""){
-                    playerInventory[j] = playerEquipment[equipmentSlot];
-                    playerEquipment[equipmentSlot] = "";
+                    playerInventory[j] = playerEquipment[equipmentSlot-1];
+                    playerEquipment[equipmentSlot-1] = "";
                     return;
                 }
             }
