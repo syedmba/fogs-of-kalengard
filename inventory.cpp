@@ -48,10 +48,10 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
         cout << "--------------------------------" << endl;
         cout << endl;
         cout << "Actions" << endl;
-        cout << "1. Swap Positions" << endl;
-        cout << "2. Delete Item (be careful what you do...)" << endl;
-        cout << "3. Use Item" << endl;
-        cout << "4. Equip/Unequip Item" << endl;
+        //cout << "1. Swap Positions" << endl;
+        //cout << "2. Delete Item (be careful what you do...)" << endl;
+        cout << "1. Use Item" << endl;
+        cout << "2. Equip/Unequip Item" << endl;
         cout << "e. Close Inventory" << endl;
 
         cout << "--------------------------------" << endl;
@@ -60,7 +60,7 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
         string response;
         cin >> response;
 
-        while (response != "1" && response != "2" && response != "3" && response != "4" && response != "e"){
+        while (response != "1" && response != "2" && response != "e"){
             cout << "Invalid action" << endl;
             cout << "--------------------------------" << endl;
             cout << "Choose an action" << endl;
@@ -71,25 +71,24 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
             getchar();
             return;
         } else if (response == "1"){
-            SwapItems(playerInventory);
-        } else if (response == "2"){
-            DeleteItem(playerInventory);
-        } else if (response == "3"){
             UseItem(playerInventory, playerHP, playerATK, playerDEF);
-        } else if (response == "4"){
+        } else if (response == "2"){
             EquipItem(playerInventory, playerEquipment);
         }
     }
 }
 
-void SwapItems(std::string playerInventory[inventorySize]){
+/* void SwapItems(std::string playerInventory[inventorySize]){
+    for()
     cout << "Items Swapped" << endl;
     return;
 }
 void DeleteItem(std::string playerInventory[inventorySize]){
+    
     cout << "Item Deleted" << endl;
     return;
 }
+*/
 
 
 
