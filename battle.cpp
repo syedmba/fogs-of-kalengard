@@ -32,16 +32,16 @@ void printLine();
 
 
 int monsterStats[numOfMonsters][numStats] = {
-    {100, 10, 1, 0, 0},   // skeleton HP, DEF, ATK
-    {70, 5, 2, 0, 0},     // goblin
-    {70, 5, 2, 0, 0}, 
-    {}, 
-    {}, 
-    {}, 
-    {}, 
-    {10000, 200, 90, 0, 30}, 
-    {},
-    {}
+    {80, 10, 1, 0, 0},          // skeleton HP, DEF, ATK, MAG ATK, MAG RES
+    {70, 5, 2, 0, 0},           // goblin
+    {200, 10, 3, 0, 0},         // ogre
+    {99, 4, 5, 5, 5},           // demon
+    {100, 7, 4, 2, 1},          // dark elf
+    {1000, 30, 10, 20, 20},     // wyvern
+    {100, 1, 4, 7, 0},          // dryad
+    {10000, 200, 90, 0, 30},    // dragon
+    {200, 1, 8, 10, 10},        // elemental
+    {50, 1, 5, 0, 0}            // wolf
 };
 
 struct MonsterStats{
@@ -150,12 +150,14 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
     int whichMonster = rand() % 9;
     // add levels to monsters?? 
 
+    string monsterName = monsterdict[whichMonster][0];
+
     printSkeleton();
     // printMonster(whichMonster);
 
 
     // cout << "You have encountered a << Skeleton >> monster !" << endl;
-    cout << "You have encountered a << " << monsterdict[whichMonster][0] << " >> monster !" << endl;
+    cout << "You have encountered a << " << monsterName << " >> monster !" << endl;
 
     string attack[numAttacks] = {
         monsterdict[whichMonster][1], 
@@ -177,8 +179,8 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         {monsterAtkDmg[whichMonster][0],monsterAtkDmg[whichMonster][1],monsterAtkDmg[whichMonster][2],monsterAtkDmg[whichMonster][3]}
     }; // create struct for this monster
 
-    int enemyHP = 100;
-    int enemyDEF = 10;
+    int enemyHP = thisMonster.stats.HP;
+    int enemyDEF = thisMonster.stats.DEF;
     // int enemyATK = 30;
     // int enemySTR = 5;
 
@@ -197,16 +199,13 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         30
     };
 
-    
-
-
     srand(time(0));
 
     while (enemyHP > 0 && playerHP > 0){
         int this_monster_atk = rand() % numAttacks;
         int crit_factor = 1;
 
-        cout << "<< " << monsterdict[whichMonster] << " >> is about to do a " << attack[this_monster_atk] << "..." << endl;
+        cout << "<< " << monsterName << " >> is about to do a " << thisMonster.MonsterAttacks[this_monster_atk] << "..." << endl;
         
         int this_message = rand() % totalBattleMessages; 
         cout << battleMessages[this_message] << endl;
@@ -228,7 +227,7 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
 
         printLine();
 
-        cout << "<< Skeleton >> did a " << attack[this_monster_atk] << " and you did a " << playerActions[response - 1] << "." << endl;
+        cout << "<< " << monsterName << " >> did a " << thisMonster.MonsterAttacks[this_monster_atk] << " and you did a " << playerActions[response - 1] << "." << endl;
 
         int crit_determiner = rand() % 10;
         if (crit_determiner == lucky_crit_number){
@@ -238,8 +237,8 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         thisDEF = playerDEF + playerActionDEF[response - 1];
         thisATK = crit_factor * playerActionATK[response - 1];
 
-        int damageToPlayer = dmg[this_monster_atk] - thisDEF;
-        int damageToEnemy = thisATK - enemyDEF;
+        int damageToPlayer = thisMonster.MonsterAttackDamages[this_monster_atk] + thisMonster.stats.ATK*0.05 - thisDEF;
+        int damageToEnemy = thisATK - thisMonster.stats.DEF;
 
         if (damageToPlayer < 0){
             damageToPlayer = 0;
@@ -253,7 +252,7 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
             cout << "You dealt a critical hit !" << endl;
         }
 
-        cout << "You inflicted " << damageToEnemy << " points of DMG to the << Skeleton >> ";
+        cout << "You inflicted " << damageToEnemy << " points of DMG to the << " << monsterName << " >> ";
         cout << "and received " << damageToPlayer << " points of damage." << endl;
 
         playerHP -= damageToPlayer;
@@ -267,7 +266,7 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
             enemyHP = 0;
         }
 
-        cout << "Player HP: " << playerHP << " || << Skeleton >> HP: " << enemyHP << endl;
+        cout << "Player HP: " << playerHP << " || << " << monsterName << " >> HP: " << enemyHP << endl;
     }
 
     printLine();
@@ -277,12 +276,12 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         enemyDefeated = true;
     }
     if (enemyHP == 0){
-        cout << "You have defeated << Skeleton >>." << endl;
+        cout << "You have defeated << " << monsterName << " >>." << endl;
         enemyDefeated = true;
         // cout << enemy_defeated;
     }
     if (playerHP == 0){
-        cout << "<< Skeleton >> has slain you." << endl;
+        cout << "<< " << monsterName << " >> has slain you." << endl;
     }
 
     printLine();
