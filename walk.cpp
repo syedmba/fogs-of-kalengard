@@ -31,16 +31,18 @@ int playerDEF = 10;
 int playerATK = 10;
 
 // array that contains the skills a player currently has
-char playerActions[totalPlayerSkills][maxLengthOfSkillName] = {
-    "blunt strike",
-    "sword slash",
-    "shield"
+string playerActions[totalPlayerSkills][6] = {
+    {"0", "Punch", "Blunt Strike", "Concuss", "Ultimate Smash", "Downfall of Judgement"},
+    {"0", "Sword Slash", "Two-Point Strike", "Flurry of Blades", "Titan's Crisscross", "Atomic Strike"},
+    {"0", "Protect", "Shield", "Sturdy Tank", "Unmoving Fortress", "Might of the Untouchable"},
+    {"0", "Kick", "Roundhouse Kick", "Triple Kick", "Devil's Anomalous Barrage", "Phaser Kick"},
+    {"0", "Rock Throw", "Flying Dagger", "Arrow Rain", "Twin Shuriken Dance", "Eclipsing Storm"}
 };
 
 
 void giveRandomItem(string playerInventory[inventorySize]){
     srand(time(0));
-    int itemIndex = rand() % ItemsListSize;
+    int itemIndex = rand() % 30;
     for (int i = 0; i < inventorySize; i++){
         if (playerInventory[i] == ""){
             playerInventory[i] = Items[itemIndex][0];
