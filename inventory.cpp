@@ -28,8 +28,21 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
             if (i == 0 && playerInventory[i] == ""){
                 cout << "No items in inventory" << endl;
             }
+            string effectHP, effectATK, effectDEF, type;
+            for (int k = 0; k < ItemsListSize; k++){
+                if (Items[k][0] == playerInventory[i]){
+                    effectHP = Items[k][1];
+                    effectATK = Items[k][2];
+                    effectDEF = Items[k][3];
+                    if (Usable[k]){
+                        type = "Usable";
+                    } else {
+                        type = "Equippable";
+                    }
+                }
+            }
             if (playerInventory[i].length() > 0){
-                cout << i+1 << ". " << playerInventory[i] << endl;
+                cout << i+1 << ". " << playerInventory[i] << " HP Effect:" << effectHP << " ATK Effect:" << effectATK << " DEF Effect:" << effectDEF << " Type: " << type << endl;
             }
         }
         cout << "--------------------------------" << endl;
@@ -163,6 +176,82 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
     cout << "Item Used" << endl;
 }
 void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]){
+    int equipmentCount = 0;
+    cout << "Current equipment: " << endl;
+    for (int i = 0; i < equipmentLimit; i++){
+        if (playerEquipment[i] != ""){
+            equipmentCount += 1;
+            cout << "Equipment Slot " << i << ": " << playerEquipment[i] << endl;
+        }
+    }
+
+    
+    
+    cout << "1. Equip Item" << endl;
+    cout << "2. Unequip Item" << endl;
+    cout << "3. Go Back" << endl;
+    int response;
+    cin >> response;
+
+    while (response != 1 && response != 2){
+        if (response == 3){
+            return;
+        }
+        cout << "Invalid Choice..." << endl;
+        cout << "1. Equip Item" << endl;
+        cout << "2. Unequip Item" << endl;
+        cout << "3. Go Back" << endl;
+        cin >> response;
+    }
+    if (response == 1){
+        if (equipmentCount == equipmentLimit){
+            cout << "Max number of items already equipped, unequip some to equip more..." << endl;
+            return;
+        }
+        int itemSlot;
+        cout << "Enter inventory slot of item you wish to equip: ";
+        cin >> itemSlot;
+        if (playerInventory[itemSlot - 1] == ""){
+            cout << "No item in this inventory slot" << endl;
+            return;
+        } else {
+            for (int i = 0; i < ItemsListSize; i++){
+                if (Items[i][0] == playerInventory[itemSlot - 1]){
+                    if (Usable[i]){
+                        cout << "Usable item cannot be equipped" << endl;
+                        return;
+                    } else {
+                        // fix slot
+                        for (int j = 0; j < equipmentLimit; j++){
+                            if (playerEquipment[j] == ""){
+                                playerEquipment[j] = playerInventory[itemSlot - 1];
+                                playerInventory[itemSlot - 1] = "";
+                                return;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    } else {
+        int equipmentSlot;
+        cout << "Enter equipment slot of item you wish to unequip: ";
+        cin >> equipmentSlot;
+        if (playerEquipment[equipmentSlot] == ""){
+            cout << "No equipment in this slot" << endl;
+            return;
+        } else {
+            for (int j = 0; j < inventorySize; j++){
+                if (playerInventory[j] == ""){
+                    playerInventory[j] = playerEquipment[equipmentSlot];
+                    playerEquipment[equipmentSlot] = "";
+                    return;
+                }
+            }
+        }
+    }
+    
     cout << "Item Equipped/Unequipped" << endl;
 }
 
