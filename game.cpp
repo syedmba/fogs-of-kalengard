@@ -12,6 +12,7 @@
 #include "printterrain.h"
 #include "inventory.h"
 #include "npcdialogueone.h"
+#include "nextarea.h"
 
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
