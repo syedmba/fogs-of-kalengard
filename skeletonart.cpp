@@ -86,7 +86,7 @@ void printGoblin(){
     cout << "          \\,___/\\___,/ " << endl;
     cout << "        ___\\ \\|uu|/ /___   " << endl;
     cout << "      /`    \\ .--. /    `\\ " << endl;
-    cout << "  jgs/       '----'       \\    " << endl;
+    cout << "     /       '----'       \\    " << endl;
 
 }
 
