@@ -16,6 +16,9 @@
 # calc: calc.o lcm.o gcd.o
 # 	g++ $(FLAGS) $^ -o $@
 
+nextarea.o: nextarea.cpp nextarea.h
+	g++ -c $<
+
 inventory.o: inventory.cpp inventory.h
 	g++ -c $<
 
@@ -28,20 +31,20 @@ npcdialogueone.o: npcdialogueone.cpp npcdialogueone.h
 battle.o: battle.cpp battle.h skeletonart.h
 	g++ -c $<
 
-walk.o: walk.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h inventory.h
+walk.o: walk.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h inventory.h nextarea.o
 	g++ -c $<
 
 printterrain.o: printterrain.cpp printterrain.h
 	g++ -c $<
 
-game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h inventory.h
+game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h inventory.h nextarea.h
 	g++ -c $<
 
-game: game.o walk.o printterrain.o battle.o skeletonart.o npcdialogueone.o inventory.o
+game: game.o walk.o printterrain.o battle.o skeletonart.o npcdialogueone.o inventory.o nextarea.o
 	g++ $^ -o $@
 
 clean:
-	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o npcdialogueone.o inventory.o game.tgz
+	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o npcdialogueone.o inventory.o nextarea.o game.tgz
 
 .PHONY: clean
 
