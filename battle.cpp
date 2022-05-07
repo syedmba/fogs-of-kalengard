@@ -104,7 +104,7 @@ static string monsterdict[numOfMonsters][numAttacks + 1] = {
 
 
 int monsterAtkDmg[numOfMonsters][numAttacks] = {
-    {},
+    {20, 40, 20, 25},
     {}
 };
 
@@ -151,12 +151,31 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
     // add levels to monsters?? 
 
     printSkeleton();
-    // printMonster(randomnum);
+    // printMonster(whichMonster);
 
 
     // cout << "You have encountered a << Skeleton >> monster !" << endl;
-    cout << "You have encountered a " << monsterdict[whichMonster] << " >> monster !" << endl;
-    Monster thisMonster = {MonsterStats(monsterStats[whichMonster]), {}, {}}; // create struct for this monster
+    cout << "You have encountered a << " << monsterdict[whichMonster][0] << " >> monster !" << endl;
+
+    string attack[numAttacks] = {
+        monsterdict[whichMonster][1], 
+        monsterdict[whichMonster][2], 
+        monsterdict[whichMonster][3], 
+        monsterdict[whichMonster][4]
+    };
+
+    int dmg[numAttacks] = {
+        monsterAtkDmg[whichMonster][0],
+        monsterAtkDmg[whichMonster][1],
+        monsterAtkDmg[whichMonster][2],
+        monsterAtkDmg[whichMonster][3]
+    };
+
+    Monster thisMonster = {
+        MonsterStats(monsterStats[whichMonster]), 
+        {monsterdict[whichMonster][1], monsterdict[whichMonster][2], monsterdict[whichMonster][3], monsterdict[whichMonster][4]}, 
+        {monsterAtkDmg[whichMonster][0],monsterAtkDmg[whichMonster][1],monsterAtkDmg[whichMonster][2],monsterAtkDmg[whichMonster][3]}
+    }; // create struct for this monster
 
     int enemyHP = 100;
     int enemyDEF = 10;
@@ -178,14 +197,8 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         30
     };
 
-    string attack[numAttacks] = {
-        "diagonal slash", 
-        "thrust", 
-        "vertical slash", 
-        "horizontal slash"
-    };
+    
 
-    int dmg[numAttacks] = {20, 40, 20, 25};
 
     srand(time(0));
 
@@ -193,7 +206,7 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         int this_monster_atk = rand() % numAttacks;
         int crit_factor = 1;
 
-        cout << "<< Skeleton >> is about to do a " << attack[this_monster_atk] << "..." << endl;
+        cout << "<< " << monsterdict[whichMonster] << " >> is about to do a " << attack[this_monster_atk] << "..." << endl;
         
         int this_message = rand() % totalBattleMessages; 
         cout << battleMessages[this_message] << endl;
