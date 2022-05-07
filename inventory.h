@@ -46,7 +46,7 @@ const std::string Items[ItemsListSize][4] = {
 {"Excalibur", "400", "400", "0"},
 };
 
-const bool Usable[] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+const bool Usable[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 void SwapItems(std::string playerInventory[inventorySize]);
