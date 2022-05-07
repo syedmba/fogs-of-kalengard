@@ -73,7 +73,7 @@ void Inventory(std::string playerInventory[inventorySize], std::string playerEqu
         } else if (response == "1"){
             UseItem(playerInventory, playerHP, playerATK, playerDEF);
         } else if (response == "2"){
-            EquipItem(playerInventory, playerEquipment);
+            EquipItem(playerInventory, playerEquipment, playerHP, playerATK, playerDEF);
         }
     }
 }
@@ -174,7 +174,7 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
 
     cout << "Item Used" << endl;
 }
-void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], int &playerHP, int &playerATK, int &playerDEF){
+void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double &playerHP, double &playerATK, double &playerDEF){
     int equipmentCount = 0;
     cout << "Current equipment: " << endl;
     for (int i = 0; i < equipmentLimit; i++){
