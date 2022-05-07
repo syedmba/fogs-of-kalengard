@@ -86,9 +86,9 @@ void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
 int main(){
 
     // player stats
-    double playerHP = 100.0;
-    double playerDEF = 10.0;
-    double playerATK = 10.0;
+    double lastHP = 100.0;
+    double lastDEF = 10.0;
+    double lastATK = 10.0;
 
     cout << "----------------------------------------------------------------------------------------------------" << endl;
     cout << "                               F O G S    O F    K A L E N G A R D" << endl;
@@ -117,19 +117,19 @@ int main(){
             cout << "Save files are incomplete! Load game again..." << endl;
             exit(1);
         }
-        int playerHP = stoi(line);
+        lastHP = stoi(line);
         getline(fin, line);
         if (line.length() == 0){
             cout << "Save files are incomplete! Load game again..." << endl;
             exit(1);
         }
-        int playerATK = stoi(line);
+        lastATK = stoi(line);
         getline(fin, line);
         if (line.length() == 0){
             cout << "Save files are incomplete! Load game again..." << endl;
             exit(1);
         }
-        int playerDEF = stoi(line);
+        lastDEF = stoi(line);
         bool equipmentReached = false;
 
         
@@ -148,6 +148,7 @@ int main(){
         }
 
         fin.close();
+        getchar();
 
     } else {
         cout << "Save files do not exist... Press Enter to begin new game" << endl;
@@ -197,7 +198,7 @@ int main(){
     static bool walkOn = true; // static ??
 
     while (walkOn){
-        walk(terrain, terrainHeight, monsterPositions, walkOn, playerHP, playerATK, playerDEF, inventory, equipment);
+        walk(terrain, terrainHeight, monsterPositions, walkOn, lastHP, lastATK, lastDEF, inventory, equipment);
     }
 
     // endwin();
