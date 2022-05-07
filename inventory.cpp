@@ -133,7 +133,7 @@ void UseItem(std::string playerInventory[inventorySize], double &playerHP, doubl
 
     // if no usable items in inventory then print message and return
     if(usableItemsInInventoryRightNow == 0){
-        cout << "There are no usable items in the inventory";
+        cout << "There are no usable items in the inventory" << endl;
         return;
     }
 
