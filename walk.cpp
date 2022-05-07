@@ -12,6 +12,7 @@
 #include "walk.h"
 #include "printterrain.h"
 #include "inventory.h"
+#include "nextarea.h"
 
 using namespace std;
 
@@ -235,6 +236,8 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         }
         
         int monsterPositions[numMonsters] = {};
+
+        nextarea();
 
         generateTerrain(terrain, terrainHeight);
         generateMonsters(terrain, terrainHeight, monsterPositions);
