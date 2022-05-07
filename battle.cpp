@@ -173,8 +173,28 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
 
     string monsterName = monsterdict[whichMonster][0];
 
-    printSkeleton();
+    // printSkeleton();
     // printMonster(whichMonster);
+
+    if (monsterName == "Skeleton"){
+        printSkeleton();
+    } else if (monsterName == "Goblin"){
+        printGoblin();
+    } else if (monsterName == "Ogre"){
+        printOgre();
+    } else if (monsterName == "Dark Elf"){
+        printDarkElf();
+    } else if (monsterName == "Dragon"){
+        printDragon();
+    } else if (monsterName == "Wyvern"){
+        printWyvern();
+    } else if (monsterName == "Dryad"){
+        printDryad();
+    } else if (monsterName == "Wolf"){
+        printWolf();
+    } else if (monsterName == "Demon"){
+        printDemon();
+    }
 
 
     // cout << "You have encountered a << Skeleton >> monster !" << endl;
