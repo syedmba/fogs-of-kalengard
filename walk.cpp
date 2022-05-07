@@ -73,7 +73,11 @@ void giveRandomItem(string playerInventory[inventorySize]){
 // this function takes input (arrow keys?) from the player
 // then moves the player correspondingly
 // and then updates the player position in the 2d array
-void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]){
+void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[], bool &walkOn){
+
+    if (walkOn == false){
+        return;
+    }
 
     // usleep(5);
     // initscr();
@@ -210,6 +214,14 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
         cout << " | Player HP: " << playerHP << " | Player ATK: " << playerATK << " | Player DEF: " << playerDEF  << " | " << endl;
     }
 
+    if (playerHP <= 0){
+        cout << endl;
+        cout << "You have died in adventure and will be revived and sent back in time to the beginning. Do not lose hope..." << endl;
+        cout << "G A M E    O V E R" << endl;
+        walkOn = false;
+        return;
+    }
+
 
     if (terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[0]] + 1)][monsterPositions[0]] != 'm' && terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[numMonsters-1]] + 1)][monsterPositions[numMonsters-1]] != 'm'){
 
@@ -218,10 +230,10 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
 
         printTerrain(terrain, 0, mapHeight - terrainHeight[0] - 2);
 
-        bool walkOn = true;
+        walkOn = true;
 
         while (walkOn){
-            walk(terrain, terrainHeight, monsterPositions);
+            walk(terrain, terrainHeight, monsterPositions, walkOn);
         }
     }
 
