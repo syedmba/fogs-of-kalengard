@@ -4,6 +4,7 @@
 
 const int inventorySize = 1000;
 const int equipmentLimit = 10;
+const int ItemsListSize = 100;
 
 
 void SwapItems(std::string playerInventory[inventorySize]);
