@@ -22,7 +22,7 @@ const int conversationLength[numberOfNPCs] = {8, 5, 7, 4, 3};
 static int conversationNumber[numberOfNPCs] = {0, 0, 0, 0, 0};
 
 // int * conversationLengthPtr = & conversationLength[0];
-const int conversationLengthDrakyn = 8;
+const int conversationLengthDrakyn = 6;
 const int conversationLengthChild = 5;
 const int conversationLengthWOM = 7;
 const int conversationLengthFairMaiden = 4;
@@ -35,8 +35,8 @@ string Drakyn[conversationLengthDrakyn] = {
     "Pleased to meet you. Knight Commander Drakyn of the Pikaen Knights Corps at your service.",
     "I have been assigned by Her Majesty to guide you around this area and help you get acquainted with fighting monsters. One of the most fundamental requirements for fighting monsters is a weapon. To start off, here's a common sword we Knights regularly use - it can be handy in many situations.",
     "Try to test different weapons and find the type that is most suitable for your fighting style.",
-    "Once that is done, I can provide you higher grade equipment fitting your choice.",
-    "I can also provide you with information regarding nearby towns, common monsters, and dungeons.",
+    // "Once that is done, I can provide you higher grade equipment fitting your choice.",
+    // "I can also provide you with information regarding nearby towns, common monsters, and dungeons.",
     "Ad fines longinquos valeamus!"
 };
 
