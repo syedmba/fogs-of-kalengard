@@ -1,0 +1,15 @@
+// inventory.h
+#ifndef INVENTORY_H
+#define INVENTORY_H
+
+const int inventorySize = 1000;
+const int equipmentLimit = 10;
+
+
+void SwapItems(std::string playerInventory[inventorySize]);
+void DeleteItem(std::string playerInventory[inventorySize]);
+void UseItem(std::string playerInventory[inventorySize]);
+void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]);
+void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]);
+
+#endif
