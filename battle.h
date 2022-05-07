@@ -5,9 +5,9 @@
 #include "skeletonart.h"
 #include "inventory.h"
 
-const int totalPlayerSkills = 15;
+const int totalPlayerSkills = 5;
 const int maxLengthOfSkillName = 20;
 
-void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int playerDEF, int &playerHP, bool &enemyDefeated);
+void battle(std::string playerActions[totalPlayerSkills][6], int playerDEF, int &playerHP, bool &enemyDefeated);
 
 #endif
