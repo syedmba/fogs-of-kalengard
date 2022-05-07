@@ -113,10 +113,22 @@ int main(){
 
         string line;
         getline(fin, line);
+        if (line.length() == 0){
+            cout << "Save files are incomplete! Load game again..." << endl;
+            exit(1);
+        }
         int playerHP = stoi(line);
         getline(fin, line);
+        if (line.length() == 0){
+            cout << "Save files are incomplete! Load game again..." << endl;
+            exit(1);
+        }
         int playerATK = stoi(line);
         getline(fin, line);
+        if (line.length() == 0){
+            cout << "Save files are incomplete! Load game again..." << endl;
+            exit(1);
+        }
         int playerDEF = stoi(line);
         bool equipmentReached = false;
 
