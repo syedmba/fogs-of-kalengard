@@ -8,6 +8,7 @@
 
 #include "battle.h"
 #include "skeletonart.h"
+#include "inventory.h"
 
 using namespace std;
 
@@ -144,7 +145,7 @@ string battleMessages[] = {
 // the third argument passed is the player HEALTH POINTS stat and is passed by reference to update it after the battle
 // the fourth argument passed is a bool value that determines the outcome of the battle and is passed by reference
 // that bool value is then used by the outer function calling battle() to update the monster positions on the terrain
-void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int playerDEF, int &playerHP, bool &enemyDefeated){
+void battle(string playerActions[totalPlayerSkills][6], int playerDEF, int &playerHP, bool &enemyDefeated){
 
     srand(time(0));
     int whichMonster = rand() % 9;
@@ -224,6 +225,11 @@ void battle(char playerActions[totalPlayerSkills][maxLengthOfSkillName], int pla
         cout << "Choose your response: " << endl;
 
         cin >> response;
+
+        if (response != 0){
+            // take valid input
+            // open inventory if e
+        }
 
         printLine();
 
