@@ -43,8 +43,9 @@ void giveRandomItem(string playerInventory[inventorySize]){
     int itemIndex = rand() % ItemsListSize;
     for (int i = 0; i < inventorySize; i++){
         if (playerInventory[i] != ""){
-            playerInventory[i] = Items[i];
+            playerInventory[i] = Items[itemIndex][0];
             cout << "The defeated enemy dropped " << playerInventory[i] << ". The item has been added to slot " << i+1 << " of your inventory." << endl;
+            return;
         }
     }
 }
