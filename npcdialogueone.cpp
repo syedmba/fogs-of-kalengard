@@ -15,9 +15,9 @@ void initiateDialogue(string npcName);
 const int textBoxWidth = 100;
 const int maxMessageLines = 7;
 const int dummyTextInLine = 18;
+const int numberOfNPCs = 5;
 const int conversationLength[numberOfNPCs] = {8, 5, 7, 4, 3};
 
-const int numberOfNPCs = 5;
 
 static int conversationNumber[numberOfNPCs] = {0, 0, 0, 0, 0};
 
