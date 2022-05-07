@@ -156,8 +156,20 @@ string battleMessages[] = {
 void battle(string playerActions[totalPlayerSkills][7], double &playerATK, double &playerDEF, double &playerHP, bool &enemyDefeated, std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double playerActionStats[totalPlayerSkills][6][3]){
 
     srand(time(0));
-    int whichMonster = rand() % 9;
-    // add levels to monsters?? 
+
+    // determine difficulty of monsters according to player skill level
+    int modInt;
+    double avg = 0;
+    for (int i = 0; i < totalPlayerSkills; i++){
+        avg += stoi(playerActions[i][0]);
+    }
+    avg = avg * 2 / 5;
+    modInt = (int) avg;
+    if (avg > 9){
+        modInt = 9;
+    }
+
+    int whichMonster = rand() % modInt;
 
     string monsterName = monsterdict[whichMonster][0];
 
