@@ -169,10 +169,10 @@ int main(){
 
     // usleep(5);
 
-    bool walkOn = true; // static ??
+    static bool walkOn = true; // static ??
 
     while (walkOn){
-        walk(terrain, terrainHeight, monsterPositions);
+        walk(terrain, terrainHeight, monsterPositions, walkOn);
     }
 
     // endwin();
