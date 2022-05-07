@@ -1,4 +1,4 @@
-# Fogs of Kalengard: Miasma of the Demon King 
+# Fogs of Kalengard: Miasma of the Demon King - Chapter 1
 # A Text-Based Adventure Game
 Project for COMP2113/ENGG1340
 
@@ -14,85 +14,45 @@ The peaceful continent of Kalengard has suddenly been invaded/plagued by the mon
 
 _Fogs of Kalengard_ is an Open-World Action RPG (role playing game) where the player explores different areas of the world, interacts with NPCs (non-player characters), defeats many kinds of enemies, and gets stronger by leveling up and unlocking new skills. With a wide variety of world locations, uncountable player choices at each stage, and unpredictable plot progression, this is an experience built to immerse the player in a world of thrilling, spell-binding adventure.
 
-## Features That We Plan To Implement
+Chapter 1 is a perpetual fighting experience where the game ends when you die. Take up your sword and fight!
 
-### Menu User Interface
-
-Start Menu and Pause Menu
-
-Player Avatar
-
-Can press ESC at any time during gameplay to open Pause Menu
-
-**Possible Menu Format:**
-
-RESUME
-
-START GAME
-
-RESTART GAME
-
-OPTIONS
-
-QUIT
+## Features That We Implemented
 
 ### Player and Battle Stats
 
-Player class (tank?, warrior?, thief? bandit? etc)
+Player Skills and Skill Levels
 
-Player level and EXP bar
+Player & Monster Health Points
 
-Monster fury/anger meter
+Player DEF and ATK Stats
 
-Player & monster health bar (updated constantly)
-
-Inventory (menu + hotbar?)
-
-Status effects
+Inventory
 
 ### Story Progression
 
-Intro Scene followed by timeskip
-
-Demon King tower is in the final area
+Spawn in wilderness
 
 Subsequent areas can be unlocked by clearing previous areas
 
-Areas may vary between cities and wilderness
+Areas vary in terrain
+
+Monsters grow stronger as player levels up their skills
 
 ### Player Control
 
-The player will be controlled using either arrow keys (if viable) or manually entered steps
-
-### Travel System
-
-Teleport waypoint at ends of areas to go to previous and next areas respectively
-
-Or we could implement fast travel to previously unlocked teleport waypoints
+The player will be controlled using arrow keys input
 
 ### Monster Encounters
 
 Monsters are generated randomly in each area
 
-Monster respawns after fixed amount of time
+Monsters range in difficulty and type
 
-### NPC interactions
-
-Dialogue depending on player's choice of replies
-
-The overall route taken would still remain same
+Each monster has different stats
 
 ### World Features
 
 Terrain generated randomly
-
-Traps
-
-Lava/Water?
-
-Collectibles
-
-Bonfire-type system to rest and regenerate HP and save progress
 
 ## Coding Elements That Support The Game Features
 
@@ -108,25 +68,17 @@ During battles, we also randomly output messages to encourage the player to obli
 
 Arrays will be used to manage player Inventory, player skill board, enemy skill boards, etc
 
-Vectors and other structures may also be implemented later
+Structs implemented for monsters and monster stats
 
 ### Dynamic Memory Management
 
-Dynamic memory management using "new" and "delete"
+Used to update inventory
 
-May be used to update status effects on player and enemies
-
-May be used to update inventory
-
-### File Input and Output
-
-File I/O will be implemented to save and load progress for each user
-
-User IDs will be assigned
+Used to manage equipped items
 
 ### Program Codes in Multiple Files
 
-Multiple files will be used to organize the code efficiently
+Multiple files used to organize the code efficiently
 
-Makefile will be used to link the code together
+Makefile used to link the code together
 
