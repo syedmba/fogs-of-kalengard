@@ -17,7 +17,7 @@ using namespace std;
 // use items such as health potions (or permanent buffs?)
 // equip and unequip items (weapons and armor etc)
 // close the inventory
-void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], int &playerHP, int &playerATK, int &playerDEF){
+void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double &playerHP, double &playerATK, double &playerDEF){
     bool foreverFlag = true;
     while (foreverFlag){
         cout << "--------------------------------" << endl;
@@ -80,7 +80,7 @@ void DeleteItem(std::string playerInventory[inventorySize]){
 
 
 
-void UseItem(std::string playerInventory[inventorySize], int &playerHP, int &playerATK, int&playerDEF){
+void UseItem(std::string playerInventory[inventorySize], double &playerHP, double &playerATK, double &playerDEF){
 
 
     // to find num of items in inventory
