@@ -92,10 +92,24 @@ void UseItem(std::string playerInventory[inventorySize], int &playerHP, int &pla
     {"Crown of the Ruined King", "300", "50", "200"},
     {"Gauntlets of the Ruined King", "300", "20", "300"},
     {"Boots of the Ruined King", "100", "100", "50"},
-    {"Chestplate of the Ruined King", "500", "0", "1000"}
+    {"Chestplate of the Ruined King", "500", "0", "1000"},
+    {"Dagger", "0", "10", "0"},
+    {"Butterfly knife", "0", "5", "0"},
+    {"Water", "5", "0", "0"},
+    {"Pumkin seeds", "5", "0", "0"},
+    {"Blade of the ancient Knight", "150", "150", "0"},
+    {"Helmet of the Ancient Knight", "100", "50", "150"},
+    {"Gauntlets of the Ancient Knight", "150", "10", "150"},
+    {"Boots of the Ancient Knight", "70", "70", "30"},
+    {"Chestplate of the Ancient Knight", "300", "0", "500"},
+    {"Wooden Shield", "0", "5", "30"},
+    {"Wooden Sword", "0", "10", "5"},
+    {"Wooden Axe", "0", "7", "5"},
+    {"Excalibur Blade", "400", "400", "0"},
+    {"Basic Armour", "50", "0", "20"}
     };
     
-    bool Usable[] = {1, 1, 0, 0, 0, 0, 0, 0};
+    bool Usable[] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     // to find num of items in inventory
     int itemsInInventoryRightNow = 0;
