@@ -38,7 +38,7 @@ const int numColsInArtI = 410;
 
 // const int mapHeight = 20;
 // const int mapLength = 100;
-const int numMonsters = 19;
+// const int numMonsters = 19;
 
 // int playerHP = 100;
 // int playerDEF = 10;
@@ -48,8 +48,6 @@ const int numMonsters = 19;
 // function prototypes
 
 // void PrintTerrain(char terrain[mapHeight][mapLength]);
-void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]);
-void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]);
 // void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[]);
 void createPlanetAndStars(char array[]);
 
@@ -61,7 +59,7 @@ void createPlanetAndStars(char array[]);
 // };
 
 
-
+// unused
 void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
 
     string planet[numRowsInArtI] = {
@@ -129,127 +127,6 @@ void createPlanetAndStars(char array[numRowsInArtI][numColsInArtI]){
 // }
 
 
-void updateArray(){
-
-}
-
-
-
-// this function generates a set number of monsters at random positions on the terrain of a game area
-// the area is passed as a 2d array called terrain with height and length stored as const values
-// the function also accepts a 1D array that contains the terrain altitude at each column
-// as well as an empty 1D array called monsterPositions
-// the function generates random column values for specific intervals
-// the function then adds the symbol for monsters (?) to the terrain array at those columns
-// monsterPositions will then be updated to contain the positions of monsters in the terrain
-void generateMonsters(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[numMonsters]){
-    // monster classification: literal or ranked?
-    // skeletons, ogres, demons, dark elves, wyverns, goblins, dryad?, dragon!, elemental beings
-
-    // number of monsters = one every 6 steps
-
-    // monster loot/drops may be affected by the type and difficulty of monster
-   
-
-    // int intervals[numMonsters] = {};
-
-    // for (int i = 0; i < 20; i++){
-    //     intervals[i] = 5*i;
-    // }
-
-    srand(time(0));
-
-    for (int i = 0; i < numMonsters; i++){
-        monsterPositions[i] = (rand() % 5) + (5*(i+1));
-        terrain[(mapHeight - 1) - (terrainHeight[monsterPositions[i]] + 1)][monsterPositions[i]] = 'm';
-    }
-
-}
-
-
-void monsterEncounter(){
-
-}
-
-
-void collectiblePicked(){
-
-}
-
-
-// this function generateTerrain() initializes a random 2D terrain
-// the first argument passed is a 2D array called terrain, which will contain the terrain generated randomly in this function
-// the second argument passed is a 1D array called terrainHeight, which will contain the height of the terrain at each column
-void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLength]){
-    
-    srand(time(0));
-    const int maxHeight = 8;
-    
-    int startHeight = rand() % 5;
-    cout << startHeight << endl;
-    terrain[(mapHeight - 1) - startHeight][0] = 'b';
-
-    int prevHeight = startHeight;
-    int this_increment = 0;
-    int random_increment_generator = 0;
-    int i = 0;
-    bool prevIncremented = true;
-
-    while (i < mapLength){
-        if (prevIncremented == false){
-            random_increment_generator = rand() % 3;
-            // random_increment_generator -= int(random_increment_generator);
-            if (random_increment_generator >= 0 && random_increment_generator < 1){
-                this_increment = -1;
-            }
-            else if (random_increment_generator >= 1 && random_increment_generator < 2){
-                this_increment = 0;
-            }
-            else if (random_increment_generator >= 2 && random_increment_generator < 3){
-                this_increment = 1;
-            }
-
-            if (prevHeight + this_increment <= maxHeight && prevHeight + this_increment >= 0){
-                terrain[(mapHeight - 1) - (prevHeight + this_increment)][i] = 'b';
-                prevHeight += this_increment;
-            }
-            else {
-                terrain[(mapHeight - 1) - prevHeight][i] = 'b';
-            }
-
-            prevIncremented = true;
-        }
-        
-        else if (prevIncremented == true){
-            terrain[(mapHeight -1) - prevHeight][i] = 'b';
-            prevIncremented = false;
-        }
-
-        terrainHeight[i] = prevHeight;
-
-        for (int j = 0; j < prevHeight; j++){
-            terrain[19 - j][i] = 'b';
-        }
-
-        i += 1;
-    }
-
-    terrain[mapHeight - startHeight - 2][0] = 'p';
-
-
-}
-
-void monsterfight(){
-
-}
-
-
-
-
-int dropLoot(){
-
-    return 0;
-}
 
 
 // the main() function of the game
