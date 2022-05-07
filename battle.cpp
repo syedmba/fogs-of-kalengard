@@ -7,8 +7,8 @@
 // #include <stdio.h>
 
 #include "battle.h"
-#include "skeletonart.h"
 #include "inventory.h"
+#include "skeletonart.h"
 
 using namespace std;
 
@@ -145,7 +145,7 @@ string battleMessages[] = {
 // the third argument passed is the player HEALTH POINTS stat and is passed by reference to update it after the battle
 // the fourth argument passed is a bool value that determines the outcome of the battle and is passed by reference
 // that bool value is then used by the outer function calling battle() to update the monster positions on the terrain
-void battle(string playerActions[totalPlayerSkills][6], int playerDEF, int &playerHP, bool &enemyDefeated){
+void battle(string playerActions[totalPlayerSkills][6], double &playerATK, double &playerDEF, double &playerHP, bool &enemyDefeated, std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double playerActionStats[totalPlayerSkills][6][3]){
 
     srand(time(0));
     int whichMonster = rand() % 9;
@@ -180,25 +180,13 @@ void battle(string playerActions[totalPlayerSkills][6], int playerDEF, int &play
         {monsterAtkDmg[whichMonster][0],monsterAtkDmg[whichMonster][1],monsterAtkDmg[whichMonster][2],monsterAtkDmg[whichMonster][3]}
     }; // create struct for this monster
 
-    int enemyHP = thisMonster.stats.HP;
-    int enemyDEF = thisMonster.stats.DEF;
+    double enemyHP = thisMonster.stats.HP;
+    double enemyDEF = thisMonster.stats.DEF;
     // int enemyATK = 30;
     // int enemySTR = 5;
 
-    int thisDEF;
-    int thisATK;
-
-    int playerActionATK[totalPlayerSkills] = {
-        45,
-        3,
-        0
-    };
-
-    int playerActionDEF[totalPlayerSkills] = {
-        0,
-        0,
-        30
-    };
+    double thisDEF;
+    double thisATK;
 
     srand(time(0));
 
@@ -212,38 +200,41 @@ void battle(string playerActions[totalPlayerSkills][6], int playerDEF, int &play
         cout << battleMessages[this_message] << endl;
         cout << "Available skills:" << endl;
 
-        int skill_counter = 1;
-
         for (int i = 0; i < totalPlayerSkills; i++){
-            if (playerActions[i]){
-                cout << skill_counter << ". " << playerActions[i] << endl;
-                skill_counter += 1;
-            }
+            cout << i+1 << ". " << playerActions[i][stoi(playerActions[i][0])] << endl;
         }
         
-        int response;
-        cout << "Choose your response: " << endl;
+        string response;
+        cout << "Choose your response (e for inventory): " << endl;
 
         cin >> response;
 
-        if (response != 0){
+        while (response != "1" && response != "2" && response != "3" && response != "4" && response != "5"){
             // take valid input
             // open inventory if e
+            if (response == "e"){
+                Inventory(playerInventory, playerEquipment, playerHP, playerATK, playerDEF);
+            }
+            printLine();
+            cout << "Choose your response (e for inventory): " << endl;
+
+            cin >> response;
         }
 
         printLine();
 
-        cout << "<< " << monsterName << " >> did a " << thisMonster.MonsterAttacks[this_monster_atk] << " and you did a " << playerActions[response - 1] << "." << endl;
+        cout << "<< " << monsterName << " >> did a " << thisMonster.MonsterAttacks[this_monster_atk] << " and you did a " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0])] << "." << endl;
 
         int crit_determiner = rand() % 10;
         if (crit_determiner == lucky_crit_number){
             crit_factor = 2;
         }
+        
+        thisDEF = playerDEF + playerActionStats[stoi(response)-1][stoi(playerActions[stoi(response)-1][0])][2];
+        thisATK = playerATK + crit_factor * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])][1];
+        playerHP += enemyHP * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])][0];
 
-        thisDEF = playerDEF + playerActionDEF[response - 1];
-        thisATK = crit_factor * playerActionATK[response - 1];
-
-        int damageToPlayer = thisMonster.MonsterAttackDamages[this_monster_atk] + thisMonster.stats.ATK*0.05 - thisDEF;
+        double damageToPlayer = thisMonster.MonsterAttackDamages[this_monster_atk] + thisMonster.stats.ATK*0.05 - thisDEF;
         int damageToEnemy = thisATK - thisMonster.stats.DEF;
 
         if (damageToPlayer < 0){
