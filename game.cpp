@@ -10,6 +10,7 @@
 #include "walk.h"
 #include "battle.h"
 #include "printterrain.h"
+#include "inventory.h"
 
 #define BLOCK   "\xE2\x96\x88"
 #define PLAYER  "\xEC\x9B\x83"
