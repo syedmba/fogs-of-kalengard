@@ -150,17 +150,11 @@ int main(){
         fin.close();
 
     } else {
-        ofstream fout(filename);
-        if (fout.fail()){
-            cout << "Error in opening file!" << endl;
-            exit(1);
-        }
+        cout << "Save files do not exist... Press Enter to begin new game" << endl;
+        getchar();
 
+        initiateDialogue("Knight Commander Drakyn", 0);
     }
-
-    getchar();
-
-    initiateDialogue("Knight Commander Drakyn", 0);
 
     // initscr();
 
