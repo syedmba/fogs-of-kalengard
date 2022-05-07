@@ -24,7 +24,10 @@ using namespace std;
 string playerInventory[inventorySize] = {};
 string playerEquipment[equipmentLimit] = {};
 
-
+// player stats
+    double playerHP = 100.0;
+    double playerDEF = 10.0;
+    double playerATK = 10.0;
 
 // array that contains the skills a player currently has
 string playerActions[totalPlayerSkills][7] = {
@@ -62,6 +65,7 @@ void giveRandomItem(string playerInventory[inventorySize]){
     }
 }
 
+bool transferred = false;
 
 // this function allows the player to move across the terrain of any area in the game
 // the area is passed as a 2d array called terrain with height and length stored as const values
@@ -70,18 +74,24 @@ void giveRandomItem(string playerInventory[inventorySize]){
 // this function takes input (arrow keys?) from the player
 // then moves the player correspondingly
 // and then updates the player position in the 2d array
-void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[], bool &walkOn, double &playerHP, double &playerATK, double &playerDEF, string inventory[inventorySize], string equipment[equipmentLimit]){
+void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int monsterPositions[], bool &walkOn, double &lastHP, double &lastATK, double &lastDEF, string inventory[inventorySize], string equipment[equipmentLimit]){
 
     if (walkOn == false){
         return;
     }
 
-    for (int i = 0; i < inventorySize; i++){
-        playerInventory[i] = inventory[i];
-    }
-    
-    for (int i = 0; i < equipmentLimit; i++){
-        playerEquipment[i] = equipment[i];
+    if (!transferred){
+        for (int i = 0; i < inventorySize; i++){
+            playerInventory[i] = inventory[i];
+        }
+        
+        for (int i = 0; i < equipmentLimit; i++){
+            playerEquipment[i] = equipment[i];
+        }
+        playerHP = lastHP;
+        playerATK = lastATK;
+        playerDEF = lastDEF;
+        transferred = true;
     }
     
 
@@ -186,6 +196,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
                         fout << playerEquipment[i] << endl;
                     }
                 }
+                cout << "Game status saved. Quitting Game..." << endl;
                 fout.close();
             }
             // quit
