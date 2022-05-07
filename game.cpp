@@ -37,6 +37,7 @@ const int numColsInArtI = 410;
 void createPlanetAndStars(char array[]);
 inline bool file_exists(const string &name);
 
+// function to check whether a .txt file with a given filename exists
 inline bool file_exists(const string &name) {
     ifstream f(name.c_str());
     return f.good();
@@ -159,19 +160,18 @@ int main(){
         initiateDialogue("Knight Commander Drakyn", 0);
     }
 
-    // initscr();
 
     char terrain[mapHeight][mapLength] = {};
     int terrainHeight[mapLength] = {};
     int monsterPositions[numMonsters] = {};
 
     // space = 's'
-    // player = 'p
+    // player = 'p'
     // block = 'b'
-    // water? monster? collectible?
+    // monster = 'm'
 
 
-    // cout << terrain[0]<< endl;
+    // create area
 
     for (int i = 0; i < mapHeight; i++){
         for (int j=0; j < mapLength; j++){
@@ -179,29 +179,17 @@ int main(){
         }
     }
 
+    
     generateTerrain(terrain, terrainHeight);
     generateMonsters(terrain, terrainHeight, monsterPositions);
 
-    // clear();
-    // refresh();
-
     printTerrain(terrain, 0, mapHeight - terrainHeight[0] - 2);
 
-    // int test;
-
-    // cin >> test;
-
-    // refresh();
-
-    // usleep(5);
-
-    static bool walkOn = true; // static ??
+    static bool walkOn = true;
 
     while (walkOn){
         walk(terrain, terrainHeight, monsterPositions, walkOn, lastHP, lastATK, lastDEF, inventory, equipment);
     }
-
-    // endwin();
 
     return 0;
 }
