@@ -8,7 +8,7 @@ const int ItemsListSize = 100;
 
 // tentative format: {item, health points effect, atk effect, def effect}
 // convert numbers to double 
-std::string Items[ItemsListSize][4] = {
+const std::string Items[ItemsListSize][4] = {
 {"Impure Health Potion", "10", "0", "0"}, 
 {"Queen Zelda's Healing Drought", "1000", "20", "100"},
 {"Rusted Shortsword", "0", "10", "0"},
@@ -41,7 +41,7 @@ std::string Items[ItemsListSize][4] = {
 
 };
 
-bool Usable[] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+const bool Usable[ItemsListSize] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 void SwapItems(std::string playerInventory[inventorySize]);
