@@ -23,7 +23,9 @@ static int conversationNumber[numberOfNPCs] = {0, 0, 0, 0, 0};
 
 // int * conversationLengthPtr = & conversationLength[0];
 const int conversationLengthDrakyn = 8;
-const int conversationLengthChild = 3;
+const int conversationLengthChild = 5;
+const int conversationLengthWOM = 7;
+const int conversationLengthFairMaiden = 4;
 
 string Drakyn[conversationLengthDrakyn] = {
     "Greetings, foreign traveler! Where go you?",
@@ -44,6 +46,23 @@ string UnknownChild[conversationLengthChild] = {
     "Can you help me?"
 };
 
+string WiseOldMan[conversationLengthWOM] = {
+    "Hello there",
+    "I see you have come far in the prophecy",
+    "Ahead lies your final challenge in your story of the chosen one",
+    "Fear you shall, finch you shall not",
+    "For the future of Kalengrad in your hands",
+    "Take this and use it",
+    "Sine sacrificio victoria esse nequit"
+};
+
+
+string FairMaiden[conversationLengthFairMaiden] = {
+    "Thank you for saving me, brave soul",
+    "Your chilvalry is outstanding",
+    "May you have success on your journey",
+    "Farewell, till we meet again."
+}
 
 
 // function to carry out the main dialogue
