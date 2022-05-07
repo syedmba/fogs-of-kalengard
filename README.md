@@ -28,7 +28,7 @@ Player DEF and ATK Stats
 
 Inventory and Equipped Items
 
-### Story Progression
+### Progression
 
 Spawn in wilderness
 
@@ -41,6 +41,8 @@ Monsters grow stronger as player levels up their skills
 ### Player Control
 
 The player will be controlled using arrow keys input
+
+Inventory management and battles will be done via input of option numbers
 
 ### Monster Encounters
 
