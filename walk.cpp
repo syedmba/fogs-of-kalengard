@@ -137,7 +137,7 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
     while (steps == 0){
         bool inventoryOpened = false;
         // cout << "Enter the number of steps you want to travel (negative to go back): ";
-        cout << "Press an arrow key (<- or ->) and press ENTER to move: " << endl;
+        cout << "Press an arrow key (<- or ->) and then press ENTER to move (e for INVENTORY): " << endl;
         
         enteredValue = getchar();
         if (enteredValue == '\033') { // if the first value is esc
@@ -176,18 +176,18 @@ void walk(char terrain[mapHeight][mapLength], int terrainHeight[mapLength], int 
     if ((steps + currentPlayerCol >= nextMonsterPosition) && (terrain[(mapHeight - 1) - (terrainHeight[nextMonsterPosition] + 1)][nextMonsterPosition] == 'm')){
         steps = nextMonsterPosition - currentPlayerCol - 1;
         
-        cout << "You encountered a monster at " << steps << " steps and cannot go any further." << endl;
+        cout << "You encountered a monster and cannot go any further." << endl;
         battleInitiated = true;
     }
     else if (steps + currentPlayerCol >= mapLength){
         steps = mapLength - currentPlayerCol - 1;
         
-        cout << "You have reached the right world border at " << steps << " steps and cannot go any further." << endl;
+        cout << "You have reached the right world border and cannot go any further." << endl;
     }
     else if (steps + currentPlayerCol < 0){
         steps = -currentPlayerCol;
         
-        cout << "You have reached the left world border at " << -steps << " steps and cannot go any further." << endl;
+        cout << "You have reached the left world border and cannot go any further." << endl;
     }
     
     terrain[currentPlayerRow][currentPlayerCol] = 's';
