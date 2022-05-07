@@ -292,7 +292,7 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
             cout << "You dealt a critical hit !" << endl;
         }
 
-        cout << "You inflicted " << damageToEnemy << " points of DMG to the << " << monsterName << " >> ";
+        cout << "You inflicted " << damageToEnemy << " points of damage to the << " << monsterName << " >> ";
         cout << "and received " << damageToPlayer << " points of damage." << endl;
 
         playerHP -= damageToPlayer;
@@ -313,8 +313,10 @@ void battle(string playerActions[totalPlayerSkills][7], double &playerATK, doubl
         int usage = stoi(playerActions[stoi(response) - 1][6]);
         if (usage == 3 || usage == 10 || usage == 30 || usage == 80){
             playerActions[stoi(response) - 1][0] = to_string(stoi(playerActions[stoi(response) - 1][0]) + 1);
-            cout << "Skill " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0]) - 1];
-            cout << " has been upgraded to " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0])] << endl;
+            cout << endl;
+            cout << " *** Skill " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0]) - 1];
+            cout << " has been upgraded to " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0])] << " ***" << endl;
+            cout << endl;
         }
     }
 
