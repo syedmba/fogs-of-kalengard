@@ -2,46 +2,34 @@
 # Created on 3 Mar 2022 by S M Bin Asif
 
 
-# FLAGS = -pedantic-errors -std=c++11
-
-# gcd.o: gcd.cpp gcd.h
-# 	g++ $(FLAGS) -c $<
-
-# lcm.o: lcm.cpp lcm.h gcd.h
-# 	g++ $(FLAGS) -c $<
-	
-# calc.o: calc.cpp lcm.h gcd.h
-# 	g++ $(FLAGS) -c $<
-	
-# calc: calc.o lcm.o gcd.o
-# 	g++ $(FLAGS) $^ -o $@
+FLAGS = -pedantic-errors -std=c++11
 
 nextarea.o: nextarea.cpp nextarea.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 inventory.o: inventory.cpp inventory.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 skeletonart.o: skeletonart.cpp skeletonart.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 npcdialogueone.o: npcdialogueone.cpp npcdialogueone.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 battle.o: battle.cpp battle.h skeletonart.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 walk.o: walk.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h inventory.h nextarea.o
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 printterrain.o: printterrain.cpp printterrain.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 game.o: game.cpp walk.h printterrain.h battle.h skeletonart.h npcdialogueone.h inventory.h nextarea.h
-	g++ -c $<
+	g++ $(FLAGS) -c $<
 
 game: game.o walk.o printterrain.o battle.o skeletonart.o npcdialogueone.o inventory.o nextarea.o
-	g++ $^ -o $@
+	g++ $(FLAGS) $^ -o $@
 
 clean:
 	rm -f game game.o walk.o battle.o skeletonart.o printterrain.o npcdialogueone.o inventory.o nextarea.o game.tgz
