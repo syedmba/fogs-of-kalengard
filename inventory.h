@@ -16,7 +16,7 @@ std::string Items[ItemsListSize][4] = {
 {"Beans", "10", "0", "0"},
 {"Soup", "15", "0", "0"},
 {"Touch of Rejuvenation", "40", "0", "0"},
-{"A Second Chance", "70", "0", "0"}
+{"A Second Chance", "70", "0", "0"},
 
 {"Queen Zelda's Healing Drought", "1000", "20", "100"},
 {"Butterfly knife", "1", "5", "0"},
