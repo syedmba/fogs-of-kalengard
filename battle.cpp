@@ -91,16 +91,16 @@ struct Monster{
 // array that contains types of monsters discoverable
 // hasn't been implemented yet
 static string monsterdict[numOfMonsters][numAttacks + 1] = {
-    {"Skeleton", "diagonal slash", "thrust", "vertical slash", "horizontal slash"},
-    {"Goblin", "Punch", "Pillage", " Rob", "Dagger"},
-    {"Ogre", "Punch", "Sword slash", "Charge", "Throw"},
-    {"Demon", "Possession", "Magic spell", "Disillusionment", "Temptation"},
+    {"Skeleton", "Diagonal Slash", "Thrust", "Vertical Slash", "Horizontal Slash"},
+    {"Goblin", "Punch", "Pillage", "Sneak Attack", "Dagger"},
+    {"Ogre", "Punch", "Club Smash", "Charge", "Throw"},
+    {"Demon", "Possession", "Magic Rain", "Disillusionment", "Temptation"},
     {"Dark elf", "Dagger dash", "Claw attack", "Sword Slash", "Spear"},
     {"Wyvern", "Fire Breath", "Lighting Breath", "Toxic Gas", "Ice Breath"},
-    {"Dryad","Dagger", "Knife", "Long Bow", "Club attack"},
-    {"Dragon", "Fire Rain", "Aura burst", "Fire Breath", "Roar"},
-    {"Elemental", "Water flood", "Firestorm", "Landslide", "Lightning strike"},
-    {"Wolf", "Claw Strike", "Charge", "Side kick", "Bite"}
+    {"Dryad", "Dagger Strike", "Wind Burst", "Long Bow", "Binding Attack"},
+    {"Dragon", "Fire Rain", "Aura Burst", "Fire Breath", "Roar"},
+    {"Elemental", "Water Flood", "Firestorm", "Landslide", "Lightning Strike"},
+    {"Wolf", "Claw Strike", "Charge", "Side Kick", "Bite"}
 };
 
 
@@ -145,7 +145,7 @@ string battleMessages[] = {
 // the third argument passed is the player HEALTH POINTS stat and is passed by reference to update it after the battle
 // the fourth argument passed is a bool value that determines the outcome of the battle and is passed by reference
 // that bool value is then used by the outer function calling battle() to update the monster positions on the terrain
-void battle(string playerActions[totalPlayerSkills][6], double &playerATK, double &playerDEF, double &playerHP, bool &enemyDefeated, std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double playerActionStats[totalPlayerSkills][6][3]){
+void battle(string playerActions[totalPlayerSkills][7], double &playerATK, double &playerDEF, double &playerHP, bool &enemyDefeated, std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], double playerActionStats[totalPlayerSkills][6][3]){
 
     srand(time(0));
     int whichMonster = rand() % 9;
@@ -224,6 +224,8 @@ void battle(string playerActions[totalPlayerSkills][6], double &playerATK, doubl
         printLine();
 
         cout << "<< " << monsterName << " >> did a " << thisMonster.MonsterAttacks[this_monster_atk] << " and you did a " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0])] << "." << endl;
+        playerActions[stoi(response) - 1][6] = to_string(stoi(playerActions[stoi(response) - 1][6]) + 1);
+        
 
         int crit_determiner = rand() % 10;
         if (crit_determiner == lucky_crit_number){
@@ -234,8 +236,8 @@ void battle(string playerActions[totalPlayerSkills][6], double &playerATK, doubl
         thisATK = playerATK + crit_factor * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])][1];
         playerHP += enemyHP * playerActionStats[stoi(response) - 1][stoi(playerActions[stoi(response)-1][0])][0];
 
-        double damageToPlayer = thisMonster.MonsterAttackDamages[this_monster_atk] + thisMonster.stats.ATK*0.05 - thisDEF;
-        int damageToEnemy = thisATK - thisMonster.stats.DEF;
+        double damageToPlayer = thisMonster.MonsterAttackDamages[this_monster_atk] + thisMonster.stats.ATK - thisDEF;
+        double damageToEnemy = thisATK - thisMonster.stats.DEF;
 
         if (damageToPlayer < 0){
             damageToPlayer = 0;
@@ -264,6 +266,15 @@ void battle(string playerActions[totalPlayerSkills][6], double &playerATK, doubl
         }
 
         cout << "Player HP: " << playerHP << " || << " << monsterName << " >> HP: " << enemyHP << endl;
+
+        // upgrade level of skill upon reaching usage milestones
+        // milestones: 3, 10, 30, 80
+        int usage = stoi(playerActions[stoi(response) - 1][6]);
+        if (usage == 3 || usage == 10 || usage == 30 || usage == 80){
+            playerActions[stoi(response) - 1][0] = to_string(stoi(playerActions[stoi(response) - 1][0]) + 1);
+            cout << "Skill " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0]) - 1];
+            cout << " has been upgraded to " << playerActions[stoi(response) - 1][stoi(playerActions[stoi(response) - 1][0])] << endl;
+        }
     }
 
     printLine();
