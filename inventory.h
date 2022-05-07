@@ -9,8 +9,8 @@ const int ItemsListSize = 100;
 
 void SwapItems(std::string playerInventory[inventorySize]);
 void DeleteItem(std::string playerInventory[inventorySize]);
-void UseItem(std::string playerInventory[inventorySize]);
+void UseItem(std::string playerInventory[inventorySize], int &playerHP, int &playerATK, int&playerDEF);
 void EquipItem(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]);
-void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit]);
+void Inventory(std::string playerInventory[inventorySize], std::string playerEquipment[equipmentLimit], int &playerHP, int &playerATK, int &playerDEF);
 
 #endif
