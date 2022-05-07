@@ -85,11 +85,17 @@ void UseItem(std::string playerInventory[inventorySize], int &playerHP, int &pla
     // tentative format: {item, health points effect, atk effect, def effect}
     // convert numbers to double 
     string Items[ItemsListSize][4] = {
-    {"health potion", "10", "0", "0"}, 
-    {"sword", "0", "10", "0"}
+    {"Impure Health Potion", "10", "0", "0"}, 
+    {"Queen Zelda's Healing Drought", "1000", "20", "100"},
+    {"Rusted Shortsword", "0", "10", "0"},
+    {"Blade of the Ruined King", "200", "200", "0"},
+    {"Crown of the Ruined King", "300", "50", "200"},
+    {"Gauntlets of the Ruined King", "300", "20", "300"},
+    {"Boots of the Ruined King", "100", "100", "50"},
+    {"Chestplate of the Ruined King", "500", "0", "1000"}
     };
     
-    bool Usable[] = {1, 0};
+    bool Usable[] = {1, 1, 0, 0, 0, 0, 0, 0};
 
     // to find num of items in inventory
     int itemsInInventoryRightNow = 0;
