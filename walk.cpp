@@ -282,7 +282,6 @@ void generateTerrain(char terrain[mapHeight][mapLength], int terrainHeight[mapLe
     const int maxHeight = 8;
     
     int startHeight = rand() % 5;
-    cout << startHeight << endl;
     terrain[(mapHeight - 1) - startHeight][0] = 'b';
 
     int prevHeight = startHeight;
