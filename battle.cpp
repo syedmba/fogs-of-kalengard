@@ -93,7 +93,7 @@ struct Monster{
 static string monsterdict[numOfMonsters][numAttacks + 1] = {
     {"Skeleton", "Diagonal Slash", "Thrust", "Vertical Slash", "Horizontal Slash"},
     {"Goblin", "Punch", "Pillage", "Sneak Attack", "Dagger Jump"},
-    {"Dark elf", "Dagger dash", "Rending Arrow", "Sword Slash", "Spear"},
+    {"Dark Elf", "Dagger dash", "Rending Arrow", "Sword Slash", "Spear"},
     {"Wolf", "Claw Strike", "Charge", "Side Kick", "Bite"},
     {"Dryad", "Dagger Strike", "Wind Burst", "Longbow Shot", "Binding Attack"},
     {"Ogre", "Punch", "Club Smash", "Charge", "Throw"},
