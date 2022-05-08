@@ -3,7 +3,7 @@
 #define INVENTORY_H
 
 const int inventorySize = 1000;
-const int equipmentLimit = 10;
+const int equipmentLimit = 5;
 const int ItemsListSize = 100;
 
 // tentative format: {item, health points effect, atk effect, def effect}
